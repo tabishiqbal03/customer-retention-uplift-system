@@ -1,0 +1,18 @@
+{
+  "pytest": {
+    "command": "python -m pytest -q --basetemp=data/stage3-final-tests --tb=short",
+    "passed": 88,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 249.79,
+    "original_tests_retained": 56,
+    "new_tests": 32
+  },
+  "ruff_check": "passed",
+  "ruff_format": "passed",
+  "pip_check": "passed",
+  "git_diff_check": "passed",
+  "workflow": "completed with _SUCCESS",
+  "report_verification": "35 policy plans checked for counts, budgets and gross minus cost equals net; report text equality and model/economics/policy hashes verified",
+  "visual_qa": "four plots inspected; A4 HTML content fits printable height; no model/economics changes after final outcomes"
+}

@@ -1,0 +1,59 @@
+# Prespecified examples, never empirical fintech benchmarks. All money is GBP.
+horizon = "30-day incremental retention contribution"
+primary = "base"
+budget = 3000.0
+maximum_contacts = 2500
+bootstrap = 1000
+bootstrap_seed = 20261104
+policy_seed = 20261105
+budget_grid = [0.0, 500.0, 1000.0, 2000.0, 3000.0, 5000.0, 10000.0]
+
+[pilot]
+p0 = 0.60
+mde = 0.03
+alpha = 0.05
+power = 0.80
+ratio = 1.0
+
+[[scenarios]]
+name = "base"
+value = 40.0
+offer_cost = 1.5
+contact_cost = 0.5
+
+[[scenarios]]
+name = "low_value"
+value = 20.0
+offer_cost = 1.5
+contact_cost = 0.5
+
+[[scenarios]]
+name = "high_value"
+value = 80.0
+offer_cost = 1.5
+contact_cost = 0.5
+
+[[scenarios]]
+name = "low_cost"
+value = 40.0
+offer_cost = 0.5
+contact_cost = 0.5
+
+[[scenarios]]
+name = "high_cost"
+value = 40.0
+offer_cost = 7.5
+contact_cost = 0.5
+
+[[scenarios]]
+name = "unfavourable"
+value = 10.0
+offer_cost = 11.5
+contact_cost = 0.5
+
+[[scenarios]]
+name = "heterogeneous"
+value = 40.0
+offer_cost = 1.5
+contact_cost = 0.5
+value_mode = "usage"

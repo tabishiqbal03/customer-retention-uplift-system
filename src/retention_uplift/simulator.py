@@ -21,7 +21,9 @@ def generate_latent(spark: SparkSession, config: Config) -> DataFrame:
     """Established customers only; all accounts exist throughout the historical year."""
     m, seed = config.mechanism, config.seed
     frame = spark.range(config.customers, numPartitions=config.partitions).select(
-        F.format_string("C%09d", F.col("id")).alias("customer_id")
+        F.concat(F.lit(config.customer_prefix), F.format_string("%09d", F.col("id"))).alias(
+            "customer_id"
+        )
     )
     frame = frame.withColumn(
         "archetype_index", F.floor(6 * uniform(seed, "archetype", "customer_id")).cast("int")
