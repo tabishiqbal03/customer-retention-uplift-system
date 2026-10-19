@@ -1,0 +1,1563 @@
+{
+  "base": {
+    "assumptions": {
+      "name": "base",
+      "value": 40.0,
+      "offer_cost": 1.5,
+      "contact_cost": 0.5,
+      "value_mode": "fixed"
+    },
+    "planning": {
+      "no_offer": {
+        "selected": 0,
+        "predicted_incremental_retained": 0.0,
+        "predicted_gross_gbp": 0.0,
+        "spend_gbp": 0.0,
+        "predicted_net_gbp": 0.0,
+        "unspent_gbp": 3000.0,
+        "capacity_used": 0,
+        "capacity_unused": 2500,
+        "excluded_nonpositive_net": 6197,
+        "excluded_limit_or_no_offer": 3803
+      },
+      "random": {
+        "selected": 1500,
+        "predicted_incremental_retained": 145.88760031828804,
+        "predicted_gross_gbp": 5835.5040127315215,
+        "spend_gbp": 3000.0,
+        "predicted_net_gbp": 2835.5040127315215,
+        "unspent_gbp": 0.0,
+        "capacity_used": 1500,
+        "capacity_unused": 1000,
+        "excluded_nonpositive_net": 6197,
+        "excluded_limit_or_no_offer": 2303
+      },
+      "churn": {
+        "selected": 1500,
+        "predicted_incremental_retained": 170.98057211571458,
+        "predicted_gross_gbp": 6839.222884628583,
+        "spend_gbp": 3000.0,
+        "predicted_net_gbp": 3839.2228846285834,
+        "unspent_gbp": 0.0,
+        "capacity_used": 1500,
+        "capacity_unused": 1000,
+        "excluded_nonpositive_net": 6197,
+        "excluded_limit_or_no_offer": 2303
+      },
+      "uplift": {
+        "selected": 1500,
+        "predicted_incremental_retained": 204.67918940749456,
+        "predicted_gross_gbp": 8187.167576299782,
+        "spend_gbp": 3000.0,
+        "predicted_net_gbp": 5187.167576299782,
+        "unspent_gbp": 0.0,
+        "capacity_used": 1500,
+        "capacity_unused": 1000,
+        "excluded_nonpositive_net": 6197,
+        "excluded_limit_or_no_offer": 2303
+      },
+      "profit": {
+        "selected": 1500,
+        "predicted_incremental_retained": 204.67918940749456,
+        "predicted_gross_gbp": 8187.167576299782,
+        "spend_gbp": 3000.0,
+        "predicted_net_gbp": 5187.167576299782,
+        "unspent_gbp": 0.0,
+        "capacity_used": 1500,
+        "capacity_unused": 1000,
+        "excluded_nonpositive_net": 6197,
+        "excluded_limit_or_no_offer": 2303
+      }
+    },
+    "break_even_uplift": 0.05,
+    "observed": {
+      "policies": {
+        "no_offer": {
+          "incremental_retained": {
+            "estimate": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "net_gbp": {
+            "estimate": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "net_per_eligible_gbp": {
+            "estimate": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          }
+        },
+        "random": {
+          "incremental_retained": {
+            "estimate": 8.0,
+            "ci95": [
+              -108.0,
+              130.0
+            ]
+          },
+          "net_gbp": {
+            "estimate": -2680.0,
+            "ci95": [
+              -7340.1,
+              2152.4999999999995
+            ]
+          },
+          "net_per_eligible_gbp": {
+            "estimate": -0.268,
+            "ci95": [
+              -0.7340099999999999,
+              0.21524999999999997
+            ]
+          }
+        },
+        "churn": {
+          "incremental_retained": {
+            "estimate": 148.0,
+            "ci95": [
+              52.0,
+              256.04999999999995
+            ]
+          },
+          "net_gbp": {
+            "estimate": 2920.0,
+            "ci95": [
+              -976.2,
+              7246.7
+            ]
+          },
+          "net_per_eligible_gbp": {
+            "estimate": 0.292,
+            "ci95": [
+              -0.09762,
+              0.7246699999999999
+            ]
+          }
+        },
+        "uplift": {
+          "incremental_retained": {
+            "estimate": 170.0,
+            "ci95": [
+              57.99999999999999,
+              284.0
+            ]
+          },
+          "net_gbp": {
+            "estimate": 3800.0,
+            "ci95": [
+              -698.15,
+              8308.2
+            ]
+          },
+          "net_per_eligible_gbp": {
+            "estimate": 0.38,
+            "ci95": [
+              -0.069815,
+              0.83082
+            ]
+          }
+        },
+        "profit": {
+          "incremental_retained": {
+            "estimate": 170.0,
+            "ci95": [
+              57.99999999999999,
+              284.0
+            ]
+          },
+          "net_gbp": {
+            "estimate": 3800.0,
+            "ci95": [
+              -698.15,
+              8308.2
+            ]
+          },
+          "net_per_eligible_gbp": {
+            "estimate": 0.38,
+            "ci95": [
+              -0.069815,
+              0.83082
+            ]
+          }
+        }
+      },
+      "paired_net_gbp": {
+        "profit - no_offer": {
+          "estimate": 3800.0,
+          "ci95": [
+            -698.15,
+            8308.2
+          ]
+        },
+        "profit - random": {
+          "estimate": 6480.0,
+          "ci95": [
+            1650.7500000000002,
+            11710.8
+          ]
+        },
+        "profit - churn": {
+          "estimate": 880.0,
+          "ci95": [
+            -3210.05,
+            5044.3
+          ]
+        },
+        "profit - uplift": {
+          "estimate": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "bootstrap": 1000
+    },
+    "recommendation": "inconclusive_no_rollout"
+  },
+  "low_value": {
+    "assumptions": {
+      "name": "low_value",
+      "value": 20.0,
+      "offer_cost": 1.5,
+      "contact_cost": 0.5,
+      "value_mode": "fixed"
+    },
+    "planning": {
+      "no_offer": {
+        "selected": 0,
+        "predicted_incremental_retained": 0.0,
+        "predicted_gross_gbp": 0.0,
+        "spend_gbp": 0.0,
+        "predicted_net_gbp": 0.0,
+        "unspent_gbp": 3000.0,
+        "capacity_used": 0,
+        "capacity_unused": 2500,
+        "excluded_nonpositive_net": 8505,
+        "excluded_limit_or_no_offer": 1495
+      },
+      "random": {
+        "selected": 1495,
+        "predicted_incremental_retained": 204.17973365506546,
+        "predicted_gross_gbp": 4083.594673101309,
+        "spend_gbp": 2990.0,
+        "predicted_net_gbp": 1093.5946731013091,
+        "unspent_gbp": 10.0,
+        "capacity_used": 1495,
+        "capacity_unused": 1005,
+        "excluded_nonpositive_net": 8505,
+        "excluded_limit_or_no_offer": 0
+      },
+      "churn": {
+        "selected": 1495,
+        "predicted_incremental_retained": 204.17973365506546,
+        "predicted_gross_gbp": 4083.594673101309,
+        "spend_gbp": 2990.0,
+        "predicted_net_gbp": 1093.5946731013091,
+        "unspent_gbp": 10.0,
+        "capacity_used": 1495,
+        "capacity_unused": 1005,
+        "excluded_nonpositive_net": 8505,
+        "excluded_limit_or_no_offer": 0
+      },
+      "uplift": {
+        "selected": 1495,
+        "predicted_incremental_retained": 204.17973365506546,
+        "predicted_gross_gbp": 4083.594673101309,
+        "spend_gbp": 2990.0,
+        "predicted_net_gbp": 1093.5946731013091,
+        "unspent_gbp": 10.0,
+        "capacity_used": 1495,
+        "capacity_unused": 1005,
+        "excluded_nonpositive_net": 8505,
+        "excluded_limit_or_no_offer": 0
+      },
+      "profit": {
+        "selected": 1495,
+        "predicted_incremental_retained": 204.17973365506546,
+        "predicted_gross_gbp": 4083.594673101309,
+        "spend_gbp": 2990.0,
+        "predicted_net_gbp": 1093.5946731013091,
+        "unspent_gbp": 10.0,
+        "capacity_used": 1495,
+        "capacity_unused": 1005,
+        "excluded_nonpositive_net": 8505,
+        "excluded_limit_or_no_offer": 0
+      }
+    },
+    "break_even_uplift": 0.1,
+    "observed": {
+      "policies": {
+        "no_offer": {
+          "incremental_retained": {
+            "estimate": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "net_gbp": {
+            "estimate": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "net_per_eligible_gbp": {
+            "estimate": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          }
+        },
+        "random": {
+          "incremental_retained": {
+            "estimate": 174.0,
+            "ci95": [
+              61.95,
+              288.0
+            ]
+          },
+          "net_gbp": {
+            "estimate": 490.0,
+            "ci95": [
+              -1784.1,
+              2740.6499999999996
+            ]
+          },
+          "net_per_eligible_gbp": {
+            "estimate": 0.049,
+            "ci95": [
+              -0.17841,
+              0.27406499999999995
+            ]
+          }
+        },
+        "churn": {
+          "incremental_retained": {
+            "estimate": 174.0,
+            "ci95": [
+              61.95,
+              288.0
+            ]
+          },
+          "net_gbp": {
+            "estimate": 490.0,
+            "ci95": [
+              -1784.1,
+              2740.6499999999996
+            ]
+          },
+          "net_per_eligible_gbp": {
+            "estimate": 0.049,
+            "ci95": [
+              -0.17841,
+              0.27406499999999995
+            ]
+          }
+        },
+        "uplift": {
+          "incremental_retained": {
+            "estimate": 174.0,
+            "ci95": [
+              61.95,
+              288.0
+            ]
+          },
+          "net_gbp": {
+            "estimate": 490.0,
+            "ci95": [
+              -1784.1,
+              2740.6499999999996
+            ]
+          },
+          "net_per_eligible_gbp": {
+            "estimate": 0.049,
+            "ci95": [
+              -0.17841,
+              0.27406499999999995
+            ]
+          }
+        },
+        "profit": {
+          "incremental_retained": {
+            "estimate": 174.0,
+            "ci95": [
+              61.95,
+              288.0
+            ]
+          },
+          "net_gbp": {
+            "estimate": 490.0,
+            "ci95": [
+              -1784.1,
+              2740.6499999999996
+            ]
+          },
+          "net_per_eligible_gbp": {
+            "estimate": 0.049,
+            "ci95": [
+              -0.17841,
+              0.27406499999999995
+            ]
+          }
+        }
+      },
+      "paired_net_gbp": {
+        "profit - no_offer": {
+          "estimate": 490.0,
+          "ci95": [
+            -1784.1,
+            2740.6499999999996
+          ]
+        },
+        "profit - random": {
+          "estimate": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "profit - churn": {
+          "estimate": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "profit - uplift": {
+          "estimate": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "bootstrap": 1000
+    },
+    "recommendation": "inconclusive_no_rollout"
+  },
+  "high_value": {
+    "assumptions": {
+      "name": "high_value",
+      "value": 80.0,
+      "offer_cost": 1.5,
+      "contact_cost": 0.5,
+      "value_mode": "fixed"
+    },
+    "planning": {
+      "no_offer": {
+        "selected": 0,
+        "predicted_incremental_retained": 0.0,
+        "predicted_gross_gbp": 0.0,
+        "spend_gbp": 0.0,
+        "predicted_net_gbp": 0.0,
+        "unspent_gbp": 3000.0,
+        "capacity_used": 0,
+        "capacity_unused": 2500,
+        "excluded_nonpositive_net": 4801,
+        "excluded_limit_or_no_offer": 5199
+      },
+      "random": {
+        "selected": 1500,
+        "predicted_incremental_retained": 121.96567150624736,
+        "predicted_gross_gbp": 9757.25372049979,
+        "spend_gbp": 3000.0,
+        "predicted_net_gbp": 6757.25372049979,
+        "unspent_gbp": 0.0,
+        "capacity_used": 1500,
+        "capacity_unused": 1000,
+        "excluded_nonpositive_net": 4801,
+        "excluded_limit_or_no_offer": 3699
+      },
+      "churn": {
+        "selected": 1500,
+        "predicted_incremental_retained": 150.55467990683124,
+        "predicted_gross_gbp": 12044.374392546499,
+        "spend_gbp": 3000.0,
+        "predicted_net_gbp": 9044.374392546499,
+        "unspent_gbp": 0.0,
+        "capacity_used": 1500,
+        "capacity_unused": 1000,
+        "excluded_nonpositive_net": 4801,
+        "excluded_limit_or_no_offer": 3699
+      },
+      "uplift": {
+        "selected": 1500,
+        "predicted_incremental_retained": 204.67918940749456,
+        "predicted_gross_gbp": 16374.335152599564,
+        "spend_gbp": 3000.0,
+        "predicted_net_gbp": 13374.335152599564,
+        "unspent_gbp": 0.0,
+        "capacity_used": 1500,
+        "capacity_unused": 1000,
+        "excluded_nonpositive_net": 4801,
+        "excluded_limit_or_no_offer": 3699
+      },
+      "profit": {
+        "selected": 1500,
+        "predicted_incremental_retained": 204.67918940749456,
+        "predicted_gross_gbp": 16374.335152599564,
+        "spend_gbp": 3000.0,
+        "predicted_net_gbp": 13374.335152599564,
+        "unspent_gbp": 0.0,
+        "capacity_used": 1500,
+        "capacity_unused": 1000,
+        "excluded_nonpositive_net": 4801,
+        "excluded_limit_or_no_offer": 3699
+      }
+    },
+    "break_even_uplift": 0.025,
+    "observed": {
+      "policies": {
+        "no_offer": {
+          "incremental_retained": {
+            "estimate": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "net_gbp": {
+            "estimate": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "net_per_eligible_gbp": {
+            "estimate": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          }
+        },
+        "random": {
+          "incremental_retained": {
+            "estimate": -8.0,
+            "ci95": [
+              -114.1,
+              108.04999999999995
+            ]
+          },
+          "net_gbp": {
+            "estimate": -3640.0,
+            "ci95": [
+              -12191.000000000002,
+              5699.199999999999
+            ]
+          },
+          "net_per_eligible_gbp": {
+            "estimate": -0.364,
+            "ci95": [
+              -1.2191,
+              0.5699199999999999
+            ]
+          }
+        },
+        "churn": {
+          "incremental_retained": {
+            "estimate": 138.0,
+            "ci95": [
+              47.949999999999996,
+              234.0
+            ]
+          },
+          "net_gbp": {
+            "estimate": 8040.0,
+            "ci95": [
+              798.1500000000001,
+              15722.8
+            ]
+          },
+          "net_per_eligible_gbp": {
+            "estimate": 0.804,
+            "ci95": [
+              0.07981500000000001,
+              1.57228
+            ]
+          }
+        },
+        "uplift": {
+          "incremental_retained": {
+            "estimate": 170.0,
+            "ci95": [
+              57.99999999999999,
+              284.0
+            ]
+          },
+          "net_gbp": {
+            "estimate": 10600.0,
+            "ci95": [
+              1637.8500000000001,
+              19670.199999999997
+            ]
+          },
+          "net_per_eligible_gbp": {
+            "estimate": 1.06,
+            "ci95": [
+              0.16378500000000001,
+              1.96702
+            ]
+          }
+        },
+        "profit": {
+          "incremental_retained": {
+            "estimate": 170.0,
+            "ci95": [
+              57.99999999999999,
+              284.0
+            ]
+          },
+          "net_gbp": {
+            "estimate": 10600.0,
+            "ci95": [
+              1637.8500000000001,
+              19670.199999999997
+            ]
+          },
+          "net_per_eligible_gbp": {
+            "estimate": 1.06,
+            "ci95": [
+              0.16378500000000001,
+              1.96702
+            ]
+          }
+        }
+      },
+      "paired_net_gbp": {
+        "profit - no_offer": {
+          "estimate": 10600.0,
+          "ci95": [
+            1637.8500000000001,
+            19670.199999999997
+          ]
+        },
+        "profit - random": {
+          "estimate": 14240.0,
+          "ci95": [
+            2899.2500000000014,
+            24993.199999999997
+          ]
+        },
+        "profit - churn": {
+          "estimate": 2560.0,
+          "ci95": [
+            -6374.65,
+            11273.599999999997
+          ]
+        },
+        "profit - uplift": {
+          "estimate": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "bootstrap": 1000
+    },
+    "recommendation": "controlled_pilot"
+  },
+  "low_cost": {
+    "assumptions": {
+      "name": "low_cost",
+      "value": 40.0,
+      "offer_cost": 0.5,
+      "contact_cost": 0.5,
+      "value_mode": "fixed"
+    },
+    "planning": {
+      "no_offer": {
+        "selected": 0,
+        "predicted_incremental_retained": 0.0,
+        "predicted_gross_gbp": 0.0,
+        "spend_gbp": 0.0,
+        "predicted_net_gbp": 0.0,
+        "unspent_gbp": 3000.0,
+        "capacity_used": 0,
+        "capacity_unused": 2500,
+        "excluded_nonpositive_net": 4801,
+        "excluded_limit_or_no_offer": 5199
+      },
+      "random": {
+        "selected": 2500,
+        "predicted_incremental_retained": 202.5946088106494,
+        "predicted_gross_gbp": 8103.784352425976,
+        "spend_gbp": 2500.0,
+        "predicted_net_gbp": 5603.784352425976,
+        "unspent_gbp": 500.0,
+        "capacity_used": 2500,
+        "capacity_unused": 0,
+        "excluded_nonpositive_net": 4801,
+        "excluded_limit_or_no_offer": 2699
+      },
+      "churn": {
+        "selected": 2500,
+        "predicted_incremental_retained": 247.9020420970649,
+        "predicted_gross_gbp": 9916.081683882596,
+        "spend_gbp": 2500.0,
+        "predicted_net_gbp": 7416.081683882595,
+        "unspent_gbp": 500.0,
+        "capacity_used": 2500,
+        "capacity_unused": 0,
+        "excluded_nonpositive_net": 4801,
+        "excluded_limit_or_no_offer": 2699
+      },
+      "uplift": {
+        "selected": 2500,
+        "predicted_incremental_retained": 290.8896266291873,
+        "predicted_gross_gbp": 11635.585065167492,
+        "spend_gbp": 2500.0,
+        "predicted_net_gbp": 9135.585065167492,
+        "unspent_gbp": 500.0,
+        "capacity_used": 2500,
+        "capacity_unused": 0,
+        "excluded_nonpositive_net": 4801,
+        "excluded_limit_or_no_offer": 2699
+      },
+      "profit": {
+        "selected": 2500,
+        "predicted_incremental_retained": 290.8896266291873,
+        "predicted_gross_gbp": 11635.585065167492,
+        "spend_gbp": 2500.0,
+        "predicted_net_gbp": 9135.585065167492,
+        "unspent_gbp": 500.0,
+        "capacity_used": 2500,
+        "capacity_unused": 0,
+        "excluded_nonpositive_net": 4801,
+        "excluded_limit_or_no_offer": 2699
+      }
+    },
+    "break_even_uplift": 0.025,
+    "observed": {
+      "policies": {
+        "no_offer": {
+          "incremental_retained": {
+            "estimate": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "net_gbp": {
+            "estimate": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "net_per_eligible_gbp": {
+            "estimate": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          }
+        },
+        "random": {
+          "incremental_retained": {
+            "estimate": 16.0,
+            "ci95": [
+              -134.0,
+              160.0
+            ]
+          },
+          "net_gbp": {
+            "estimate": -1860.0,
+            "ci95": [
+              -7867.25,
+              3894.475
+            ]
+          },
+          "net_per_eligible_gbp": {
+            "estimate": -0.186,
+            "ci95": [
+              -0.786725,
+              0.3894475
+            ]
+          }
+        },
+        "churn": {
+          "incremental_retained": {
+            "estimate": 218.0,
+            "ci95": [
+              87.95,
+              356.04999999999995
+            ]
+          },
+          "net_gbp": {
+            "estimate": 6220.0,
+            "ci95": [
+              993.45,
+              11704.124999999996
+            ]
+          },
+          "net_per_eligible_gbp": {
+            "estimate": 0.622,
+            "ci95": [
+              0.099345,
+              1.1704124999999996
+            ]
+          }
+        },
+        "uplift": {
+          "incremental_retained": {
+            "estimate": 180.0,
+            "ci95": [
+              25.950000000000003,
+              328.0
+            ]
+          },
+          "net_gbp": {
+            "estimate": 4700.0,
+            "ci95": [
+              -1480.3999999999999,
+              10599.099999999999
+            ]
+          },
+          "net_per_eligible_gbp": {
+            "estimate": 0.47,
+            "ci95": [
+              -0.14804,
+              1.05991
+            ]
+          }
+        },
+        "profit": {
+          "incremental_retained": {
+            "estimate": 180.0,
+            "ci95": [
+              25.950000000000003,
+              328.0
+            ]
+          },
+          "net_gbp": {
+            "estimate": 4700.0,
+            "ci95": [
+              -1480.3999999999999,
+              10599.099999999999
+            ]
+          },
+          "net_per_eligible_gbp": {
+            "estimate": 0.47,
+            "ci95": [
+              -0.14804,
+              1.05991
+            ]
+          }
+        }
+      },
+      "paired_net_gbp": {
+        "profit - no_offer": {
+          "estimate": 4700.0,
+          "ci95": [
+            -1480.3999999999999,
+            10599.099999999999
+          ]
+        },
+        "profit - random": {
+          "estimate": 6560.0,
+          "ci95": [
+            249.87500000000003,
+            12360.124999999995
+          ]
+        },
+        "profit - churn": {
+          "estimate": -1520.0,
+          "ci95": [
+            -6167.8,
+            3170.8999999999987
+          ]
+        },
+        "profit - uplift": {
+          "estimate": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "bootstrap": 1000
+    },
+    "recommendation": "inconclusive_no_rollout"
+  },
+  "high_cost": {
+    "assumptions": {
+      "name": "high_cost",
+      "value": 40.0,
+      "offer_cost": 7.5,
+      "contact_cost": 0.5,
+      "value_mode": "fixed"
+    },
+    "planning": {
+      "no_offer": {
+        "selected": 0,
+        "predicted_incremental_retained": 0.0,
+        "predicted_gross_gbp": 0.0,
+        "spend_gbp": 0.0,
+        "predicted_net_gbp": 0.0,
+        "unspent_gbp": 3000.0,
+        "capacity_used": 0,
+        "capacity_unused": 2500,
+        "excluded_nonpositive_net": 9916,
+        "excluded_limit_or_no_offer": 84
+      },
+      "random": {
+        "selected": 84,
+        "predicted_incremental_retained": 18.621470552580515,
+        "predicted_gross_gbp": 744.8588221032207,
+        "spend_gbp": 672.0,
+        "predicted_net_gbp": 72.85882210322063,
+        "unspent_gbp": 2328.0,
+        "capacity_used": 84,
+        "capacity_unused": 2416,
+        "excluded_nonpositive_net": 9916,
+        "excluded_limit_or_no_offer": 0
+      },
+      "churn": {
+        "selected": 84,
+        "predicted_incremental_retained": 18.621470552580515,
+        "predicted_gross_gbp": 744.8588221032207,
+        "spend_gbp": 672.0,
+        "predicted_net_gbp": 72.85882210322063,
+        "unspent_gbp": 2328.0,
+        "capacity_used": 84,
+        "capacity_unused": 2416,
+        "excluded_nonpositive_net": 9916,
+        "excluded_limit_or_no_offer": 0
+      },
+      "uplift": {
+        "selected": 84,
+        "predicted_incremental_retained": 18.621470552580515,
+        "predicted_gross_gbp": 744.8588221032207,
+        "spend_gbp": 672.0,
+        "predicted_net_gbp": 72.85882210322063,
+        "unspent_gbp": 2328.0,
+        "capacity_used": 84,
+        "capacity_unused": 2416,
+        "excluded_nonpositive_net": 9916,
+        "excluded_limit_or_no_offer": 0
+      },
+      "profit": {
+        "selected": 84,
+        "predicted_incremental_retained": 18.621470552580515,
+        "predicted_gross_gbp": 744.8588221032207,
+        "spend_gbp": 672.0,
+        "predicted_net_gbp": 72.85882210322063,
+        "unspent_gbp": 2328.0,
+        "capacity_used": 84,
+        "capacity_unused": 2416,
+        "excluded_nonpositive_net": 9916,
+        "excluded_limit_or_no_offer": 0
+      }
+    },
+    "break_even_uplift": 0.2,
+    "observed": {
+      "policies": {
+        "no_offer": {
+          "incremental_retained": {
+            "estimate": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "net_gbp": {
+            "estimate": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "net_per_eligible_gbp": {
+            "estimate": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          }
+        },
+        "random": {
+          "incremental_retained": {
+            "estimate": 34.0,
+            "ci95": [
+              8.0,
+              62.0
+            ]
+          },
+          "net_gbp": {
+            "estimate": 688.0,
+            "ci95": [
+              -304.59999999999997,
+              1736.1999999999998
+            ]
+          },
+          "net_per_eligible_gbp": {
+            "estimate": 0.0688,
+            "ci95": [
+              -0.030459999999999997,
+              0.17362
+            ]
+          }
+        },
+        "churn": {
+          "incremental_retained": {
+            "estimate": 34.0,
+            "ci95": [
+              8.0,
+              62.0
+            ]
+          },
+          "net_gbp": {
+            "estimate": 688.0,
+            "ci95": [
+              -304.59999999999997,
+              1736.1999999999998
+            ]
+          },
+          "net_per_eligible_gbp": {
+            "estimate": 0.0688,
+            "ci95": [
+              -0.030459999999999997,
+              0.17362
+            ]
+          }
+        },
+        "uplift": {
+          "incremental_retained": {
+            "estimate": 34.0,
+            "ci95": [
+              8.0,
+              62.0
+            ]
+          },
+          "net_gbp": {
+            "estimate": 688.0,
+            "ci95": [
+              -304.59999999999997,
+              1736.1999999999998
+            ]
+          },
+          "net_per_eligible_gbp": {
+            "estimate": 0.0688,
+            "ci95": [
+              -0.030459999999999997,
+              0.17362
+            ]
+          }
+        },
+        "profit": {
+          "incremental_retained": {
+            "estimate": 34.0,
+            "ci95": [
+              8.0,
+              62.0
+            ]
+          },
+          "net_gbp": {
+            "estimate": 688.0,
+            "ci95": [
+              -304.59999999999997,
+              1736.1999999999998
+            ]
+          },
+          "net_per_eligible_gbp": {
+            "estimate": 0.0688,
+            "ci95": [
+              -0.030459999999999997,
+              0.17362
+            ]
+          }
+        }
+      },
+      "paired_net_gbp": {
+        "profit - no_offer": {
+          "estimate": 688.0,
+          "ci95": [
+            -304.59999999999997,
+            1736.1999999999998
+          ]
+        },
+        "profit - random": {
+          "estimate": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "profit - churn": {
+          "estimate": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "profit - uplift": {
+          "estimate": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "bootstrap": 1000
+    },
+    "recommendation": "inconclusive_no_rollout"
+  },
+  "unfavourable": {
+    "assumptions": {
+      "name": "unfavourable",
+      "value": 10.0,
+      "offer_cost": 11.5,
+      "contact_cost": 0.5,
+      "value_mode": "fixed"
+    },
+    "planning": {
+      "no_offer": {
+        "selected": 0,
+        "predicted_incremental_retained": 0.0,
+        "predicted_gross_gbp": 0.0,
+        "spend_gbp": 0.0,
+        "predicted_net_gbp": 0.0,
+        "unspent_gbp": 3000.0,
+        "capacity_used": 0,
+        "capacity_unused": 2500,
+        "excluded_nonpositive_net": 10000,
+        "excluded_limit_or_no_offer": 0
+      },
+      "random": {
+        "selected": 0,
+        "predicted_incremental_retained": 0.0,
+        "predicted_gross_gbp": 0.0,
+        "spend_gbp": 0.0,
+        "predicted_net_gbp": 0.0,
+        "unspent_gbp": 3000.0,
+        "capacity_used": 0,
+        "capacity_unused": 2500,
+        "excluded_nonpositive_net": 10000,
+        "excluded_limit_or_no_offer": 0
+      },
+      "churn": {
+        "selected": 0,
+        "predicted_incremental_retained": 0.0,
+        "predicted_gross_gbp": 0.0,
+        "spend_gbp": 0.0,
+        "predicted_net_gbp": 0.0,
+        "unspent_gbp": 3000.0,
+        "capacity_used": 0,
+        "capacity_unused": 2500,
+        "excluded_nonpositive_net": 10000,
+        "excluded_limit_or_no_offer": 0
+      },
+      "uplift": {
+        "selected": 0,
+        "predicted_incremental_retained": 0.0,
+        "predicted_gross_gbp": 0.0,
+        "spend_gbp": 0.0,
+        "predicted_net_gbp": 0.0,
+        "unspent_gbp": 3000.0,
+        "capacity_used": 0,
+        "capacity_unused": 2500,
+        "excluded_nonpositive_net": 10000,
+        "excluded_limit_or_no_offer": 0
+      },
+      "profit": {
+        "selected": 0,
+        "predicted_incremental_retained": 0.0,
+        "predicted_gross_gbp": 0.0,
+        "spend_gbp": 0.0,
+        "predicted_net_gbp": 0.0,
+        "unspent_gbp": 3000.0,
+        "capacity_used": 0,
+        "capacity_unused": 2500,
+        "excluded_nonpositive_net": 10000,
+        "excluded_limit_or_no_offer": 0
+      }
+    },
+    "break_even_uplift": 1.2,
+    "observed": {
+      "policies": {
+        "no_offer": {
+          "incremental_retained": {
+            "estimate": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "net_gbp": {
+            "estimate": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "net_per_eligible_gbp": {
+            "estimate": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          }
+        },
+        "random": {
+          "incremental_retained": {
+            "estimate": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "net_gbp": {
+            "estimate": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "net_per_eligible_gbp": {
+            "estimate": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          }
+        },
+        "churn": {
+          "incremental_retained": {
+            "estimate": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "net_gbp": {
+            "estimate": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "net_per_eligible_gbp": {
+            "estimate": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          }
+        },
+        "uplift": {
+          "incremental_retained": {
+            "estimate": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "net_gbp": {
+            "estimate": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "net_per_eligible_gbp": {
+            "estimate": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          }
+        },
+        "profit": {
+          "incremental_retained": {
+            "estimate": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "net_gbp": {
+            "estimate": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "net_per_eligible_gbp": {
+            "estimate": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          }
+        }
+      },
+      "paired_net_gbp": {
+        "profit - no_offer": {
+          "estimate": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "profit - random": {
+          "estimate": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "profit - churn": {
+          "estimate": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "profit - uplift": {
+          "estimate": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "bootstrap": 1000
+    },
+    "recommendation": "no_offer"
+  },
+  "heterogeneous": {
+    "assumptions": {
+      "name": "heterogeneous",
+      "value": 40.0,
+      "offer_cost": 1.5,
+      "contact_cost": 0.5,
+      "value_mode": "usage"
+    },
+    "planning": {
+      "no_offer": {
+        "selected": 0,
+        "predicted_incremental_retained": 0.0,
+        "predicted_gross_gbp": 0.0,
+        "spend_gbp": 0.0,
+        "predicted_net_gbp": 0.0,
+        "unspent_gbp": 3000.0,
+        "capacity_used": 0,
+        "capacity_unused": 2500,
+        "excluded_nonpositive_net": 5862,
+        "excluded_limit_or_no_offer": 4138
+      },
+      "random": {
+        "selected": 1500,
+        "predicted_incremental_retained": 135.31472907679316,
+        "predicted_gross_gbp": 6966.659956780125,
+        "spend_gbp": 3000.0,
+        "predicted_net_gbp": 3966.6599567801245,
+        "unspent_gbp": 0.0,
+        "capacity_used": 1500,
+        "capacity_unused": 1000,
+        "excluded_nonpositive_net": 5862,
+        "excluded_limit_or_no_offer": 2638
+      },
+      "churn": {
+        "selected": 1500,
+        "predicted_incremental_retained": 164.2913511920403,
+        "predicted_gross_gbp": 8070.231860724419,
+        "spend_gbp": 3000.0,
+        "predicted_net_gbp": 5070.23186072442,
+        "unspent_gbp": 0.0,
+        "capacity_used": 1500,
+        "capacity_unused": 1000,
+        "excluded_nonpositive_net": 5862,
+        "excluded_limit_or_no_offer": 2638
+      },
+      "uplift": {
+        "selected": 1500,
+        "predicted_incremental_retained": 204.67918940749456,
+        "predicted_gross_gbp": 10195.587917790544,
+        "spend_gbp": 3000.0,
+        "predicted_net_gbp": 7195.587917790544,
+        "unspent_gbp": 0.0,
+        "capacity_used": 1500,
+        "capacity_unused": 1000,
+        "excluded_nonpositive_net": 5862,
+        "excluded_limit_or_no_offer": 2638
+      },
+      "profit": {
+        "selected": 1500,
+        "predicted_incremental_retained": 202.9217941864933,
+        "predicted_gross_gbp": 10536.554357787114,
+        "spend_gbp": 3000.0,
+        "predicted_net_gbp": 7536.554357787116,
+        "unspent_gbp": 0.0,
+        "capacity_used": 1500,
+        "capacity_unused": 1000,
+        "excluded_nonpositive_net": 5862,
+        "excluded_limit_or_no_offer": 2638
+      }
+    },
+    "break_even_uplift": null,
+    "observed": {
+      "policies": {
+        "no_offer": {
+          "incremental_retained": {
+            "estimate": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "net_gbp": {
+            "estimate": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "net_per_eligible_gbp": {
+            "estimate": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          }
+        },
+        "random": {
+          "incremental_retained": {
+            "estimate": 18.0,
+            "ci95": [
+              -104.0,
+              140.0
+            ]
+          },
+          "net_gbp": {
+            "estimate": -2003.3333333333328,
+            "ci95": [
+              -8379.683333333336,
+              4389.683333333335
+            ]
+          },
+          "net_per_eligible_gbp": {
+            "estimate": -0.20033333333333345,
+            "ci95": [
+              -0.8379683333333335,
+              0.4389683333333335
+            ]
+          }
+        },
+        "churn": {
+          "incremental_retained": {
+            "estimate": 164.0,
+            "ci95": [
+              64.0,
+              268.0
+            ]
+          },
+          "net_gbp": {
+            "estimate": 5196.666666666667,
+            "ci95": [
+              358.18333333333095,
+              10341.250000000015
+            ]
+          },
+          "net_per_eligible_gbp": {
+            "estimate": 0.5196666666666666,
+            "ci95": [
+              0.03581833333333309,
+              1.0341250000000015
+            ]
+          }
+        },
+        "uplift": {
+          "incremental_retained": {
+            "estimate": 170.0,
+            "ci95": [
+              57.99999999999999,
+              284.0
+            ]
+          },
+          "net_gbp": {
+            "estimate": 5450.000000000002,
+            "ci95": [
+              -185.6666666666663,
+              10906.333333333328
+            ]
+          },
+          "net_per_eligible_gbp": {
+            "estimate": 0.545,
+            "ci95": [
+              -0.018566666666666627,
+              1.090633333333333
+            ]
+          }
+        },
+        "profit": {
+          "incremental_retained": {
+            "estimate": 194.0,
+            "ci95": [
+              82.0,
+              308.04999999999995
+            ]
+          },
+          "net_gbp": {
+            "estimate": 6950.000000000002,
+            "ci95": [
+              797.7166666666666,
+              13090.766666666661
+            ]
+          },
+          "net_per_eligible_gbp": {
+            "estimate": 0.695,
+            "ci95": [
+              0.07977166666666666,
+              1.309076666666666
+            ]
+          }
+        }
+      },
+      "paired_net_gbp": {
+        "profit - no_offer": {
+          "estimate": 6950.000000000002,
+          "ci95": [
+            797.7166666666666,
+            13090.766666666661
+          ]
+        },
+        "profit - random": {
+          "estimate": 8953.333333333334,
+          "ci95": [
+            2093.1333333333223,
+            15923.416666666672
+          ]
+        },
+        "profit - churn": {
+          "estimate": 1753.3333333333344,
+          "ci95": [
+            -3907.483333333338,
+            7196.533333333336
+          ]
+        },
+        "profit - uplift": {
+          "estimate": 1500.0000000000002,
+          "ci95": [
+            -1267.5333333333288,
+            4025.4666666666644
+          ]
+        }
+      },
+      "bootstrap": 1000
+    },
+    "recommendation": "controlled_pilot"
+  }
+}

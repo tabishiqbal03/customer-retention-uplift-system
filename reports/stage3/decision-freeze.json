@@ -1,0 +1,7 @@
+{
+  "policies_sha256": "eda5a4493b3a754d5bf64090c6260110b28775d30b90d53e97cc2c6d3832446e",
+  "planning_sha256": "40e9b97371882bdbeec3db7e75e7bfb81c98979fddfb0f366631ac9f02921d7a",
+  "ids_disjoint": true,
+  "old_customers": 25000,
+  "new_customers": 10000
+}

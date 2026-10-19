@@ -60,6 +60,7 @@ class Mechanism:
 class Config:
     customers: int = 1000
     seed: int = 20261019
+    customer_prefix: str = "C"
     history_start: str = "2025-01-01"
     assignment_date: str = "2026-01-01"
     outcome_days: int = 30
@@ -69,6 +70,8 @@ class Config:
     mechanism: Mechanism = field(default_factory=Mechanism)
 
     def __post_init__(self) -> None:
+        if not isinstance(self.customer_prefix, str) or not self.customer_prefix.isalpha():
+            raise ValueError("customer_prefix must contain letters only")
         for key in ("customers", "seed", "outcome_days", "partitions"):
             if type(getattr(self, key)) is not int:
                 raise ValueError(f"{key} must be an integer")

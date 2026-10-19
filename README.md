@@ -1,6 +1,6 @@
 # Customer Retention Uplift & Decision Intelligence System
 
-**Stage 2: churn baselines, causal uplift modelling and held-out targeting evaluation.**
+**Stage 3: illustrative financial targeting, uncertainty and experimental design.**
 
 Which fintech customers should receive a retention offer so that it changes behaviour?
 A churn score estimates risk; uplift estimates the change caused by an intervention.
@@ -10,7 +10,7 @@ Stage 2 investigates this distinction with this reproducible randomized dataset.
 Stage 1 generates customers, historical transactions, randomized assignments, observed outcomes
 and hidden expected effects. It builds pre-offer features and validates their integrity.
 Stage 2 adds control-only churn prediction, constant/T/S uplift estimators and equal-outreach
-policy evaluation. Profit optimisation and AI services remain outside this stage.
+policy evaluation. Stage 3 adds financial decisions and pilot planning; AI services remain future work.
 
 All customer and transaction data are synthetic. Behaviour and offer responsiveness are designed
 assumptions, the experiment is simulated, and known treatment effects are synthetic ground truth.
@@ -25,7 +25,7 @@ directory if Java is not already configured. No unofficial Hadoop binaries are r
 ```bat
 git clone https://github.com/tabishiqbal03/customer-retention-uplift-system.git
 cd customer-retention-uplift-system
-git checkout feature/stage-2-uplift-modelling
+git checkout feature/stage-3-profit-optimization
 py -3.14 -m venv .venv
 .venv\Scripts\activate
 python -m pip install -e ".[dev]"
@@ -37,7 +37,7 @@ python -m retention_uplift.cli generate --config configs/smoke.toml --output dat
 python -m retention_uplift.cli validate --input data/smoke
 ```
 
-The checkout command applies while Stage 2 awaits merge. With an existing environment, activate
+The checkout command applies while Stage 3 awaits review. With an existing environment, activate
 it and start at installation. On POSIX use `python3 -m venv .venv` and `source .venv/bin/activate`;
 the Python commands are identical. `retention-data` is an equivalent installed CLI entry point.
 
@@ -139,4 +139,34 @@ not real-world causal validation. See [the full protocol](docs/modelling.md) and
 New modules: `modelling_data.py` (bounded Spark bridge/splits), `models.py` (training/selection),
 `policy.py` (allocation/IPW/bootstrap), `evaluation.py` (final diagnostics), and
 `stage2.py` / `stage2_reporting.py` (artifacts/figures). Local models, manifests and per-customer
-scores live under ignored `data/`; only aggregate evidence is committed. Stage 3 is not implemented.
+scores live under ignored `data/`; only aggregate evidence is committed. Stage 3 extends these interfaces as described below.
+
+## Stage 3 workflow
+
+```bat
+python -m retention_uplift.cli generate --config configs/evaluation.toml --output data/evaluation
+python -m retention_uplift.cli run-stage2 --input data/evaluation --output data/stage2-evaluation
+python -m retention_uplift.cli run-stage3 --models data/stage2-evaluation --training-source data/evaluation --output data/stage3-final
+```
+
+Reuse existing successful Stage 1/2 outputs instead of overwriting them. Stage 3 freezes the selected
+T-learner and seven explicit economic scenarios before generating 10,000 new customers with a
+different seed and disjoint IDs. If a reproduced Stage 2 selects a different learner, the Stage 3
+protocol rejects it rather than silently reselecting. Use trusted local model files only.
+
+The base scenario assumes GBP40 contribution per incremental retained customer over 30 days,
+GBP2 cost per selected customer, GBP3000 maximum spend and 2500 maximum contacts. These are
+illustrative assumptions, not industry measurements. Profit selection maximizes predicted net
+value under uniform costs. All comparators share a positive-net screen and common maximum limits.
+Uplift and profit rankings coincide at fixed value; heterogeneous values can separate them.
+
+Outputs: protocol/model hashes, frozen local policy decisions, aggregate predicted and randomized
+observed monetary estimates, paired bootstrap intervals, sensitivity, four figures and a business
+brief. No real CLV, offer cost, campaign, retention gain or profitability improvement is established.
+Previously examined Stage 2 results are not fresh confirmation. The fresh cohort is a new simulated
+sample from the same mechanism, not real or temporal validation. A hypothetical targeted pilot
+estimates an offer effect within that population, not whole-policy superiority or profit.
+
+Read [financial methodology and pilot design](docs/financial-decisions.md),
+[completion evidence](reports/stage-3-completion.md) and the
+[business brief](reports/stage3/business-summary.md). No Stage 4 services are implemented.

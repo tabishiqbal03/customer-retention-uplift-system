@@ -1,0 +1,5 @@
+customers = 10000
+seed = 20261103
+customer_prefix = "FINAL"
+partitions = 16
+master = "local[2]"

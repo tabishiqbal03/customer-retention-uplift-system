@@ -1,0 +1,221 @@
+{
+  "synthetic": true,
+  "illustrative_economics": true,
+  "economics": {
+    "horizon": "30-day incremental retention contribution",
+    "primary": "base",
+    "budget": 3000.0,
+    "maximum_contacts": 2500,
+    "bootstrap": 1000,
+    "bootstrap_seed": 20261104,
+    "policy_seed": 20261105,
+    "budget_grid": [
+      0.0,
+      500.0,
+      1000.0,
+      2000.0,
+      3000.0,
+      5000.0,
+      10000.0
+    ],
+    "pilot": {
+      "p0": 0.6,
+      "mde": 0.03,
+      "alpha": 0.05,
+      "power": 0.8,
+      "ratio": 1.0
+    },
+    "scenarios": [
+      {
+        "name": "base",
+        "value": 40.0,
+        "offer_cost": 1.5,
+        "contact_cost": 0.5
+      },
+      {
+        "name": "low_value",
+        "value": 20.0,
+        "offer_cost": 1.5,
+        "contact_cost": 0.5
+      },
+      {
+        "name": "high_value",
+        "value": 80.0,
+        "offer_cost": 1.5,
+        "contact_cost": 0.5
+      },
+      {
+        "name": "low_cost",
+        "value": 40.0,
+        "offer_cost": 0.5,
+        "contact_cost": 0.5
+      },
+      {
+        "name": "high_cost",
+        "value": 40.0,
+        "offer_cost": 7.5,
+        "contact_cost": 0.5
+      },
+      {
+        "name": "unfavourable",
+        "value": 10.0,
+        "offer_cost": 11.5,
+        "contact_cost": 0.5
+      },
+      {
+        "name": "heterogeneous",
+        "value": 40.0,
+        "offer_cost": 1.5,
+        "contact_cost": 0.5,
+        "value_mode": "usage"
+      }
+    ]
+  },
+  "cohort_config": {
+    "customers": 10000,
+    "seed": 20261103,
+    "customer_prefix": "FINAL",
+    "history_start": "2025-01-01",
+    "assignment_date": "2026-01-01",
+    "outcome_days": 30,
+    "treatment_probability": 0.5,
+    "partitions": 16,
+    "master": "local[2]",
+    "mechanism": {
+      "baseline_intercept": -0.8,
+      "engagement_weight": 2.3,
+      "trend_weight": 1.0,
+      "savings_weight": 0.25,
+      "latent_noise": 0.6,
+      "benefit_strength": 1.8,
+      "harm_strength": 1.4,
+      "engagement_noise": 0.22,
+      "trend_noise": 0.28,
+      "preference_noise": 0.22,
+      "monthly_rate": 7.0,
+      "max_monthly_transactions": 60,
+      "mean_spend_gbp": 35.0,
+      "spend_log_sigma": 0.85
+    }
+  },
+  "training_config": {
+    "customers": 25000,
+    "seed": 20261019,
+    "history_start": "2025-01-01",
+    "assignment_date": "2026-01-01",
+    "outcome_days": 30,
+    "treatment_probability": 0.5,
+    "partitions": 32,
+    "master": "local[2]",
+    "mechanism": {
+      "baseline_intercept": -0.8,
+      "engagement_weight": 2.3,
+      "trend_weight": 1.0,
+      "savings_weight": 0.25,
+      "latent_noise": 0.6,
+      "benefit_strength": 1.8,
+      "harm_strength": 1.4,
+      "engagement_noise": 0.22,
+      "trend_noise": 0.28,
+      "preference_noise": 0.22,
+      "monthly_rate": 7.0,
+      "max_monthly_transactions": 60,
+      "mean_spend_gbp": 35.0,
+      "spend_log_sigma": 0.85
+    }
+  },
+  "model_sha256": "44ee7355a15a4ba4bcdd482a63643f341f94c33da5501771d1530f62eee99d68",
+  "selection": {
+    "selected_uplift": "t",
+    "selected_leaves": {
+      "t": 7,
+      "s": 7
+    },
+    "selected_churn_C": 0.1,
+    "tree_parameters": {
+      "learning_rate": 0.05,
+      "min_samples_leaf": 40,
+      "l2_regularization": 10,
+      "early_stopping": false
+    },
+    "attempts": [
+      {
+        "model": "constant",
+        "leaves": 7,
+        "validation_effect_loss": 0.0006282524397552869
+      },
+      {
+        "model": "t",
+        "leaves": 7,
+        "validation_effect_loss": -0.000630721369146314
+      },
+      {
+        "model": "t",
+        "leaves": 15,
+        "validation_effect_loss": 0.0007675671442308696
+      },
+      {
+        "model": "s",
+        "leaves": 7,
+        "validation_effect_loss": -0.0004951350106466637
+      },
+      {
+        "model": "s",
+        "leaves": 15,
+        "validation_effect_loss": -4.813140614461577e-05
+      },
+      {
+        "model": "churn",
+        "C": 0.1,
+        "validation_brier": 0.2197834830572405
+      },
+      {
+        "model": "churn",
+        "C": 1.0,
+        "validation_brier": 0.21979769863389148
+      }
+    ],
+    "iterations": 100,
+    "features": [
+      "tenure_days",
+      "transaction_count",
+      "monthly_frequency",
+      "card_spend_gbp",
+      "mean_transaction_gbp",
+      "transaction_stddev_gbp",
+      "active_months",
+      "recency_days",
+      "transactions_30d",
+      "transactions_90d",
+      "transactions_previous_30d",
+      "activity_change_30d",
+      "card_spend_30d_gbp",
+      "card_spend_90d_gbp",
+      "card_count",
+      "savings_count",
+      "transfer_count",
+      "products_used",
+      "card_share",
+      "groceries_share",
+      "transport_share",
+      "leisure_share"
+    ],
+    "split_seed": 20261020,
+    "model_seed": 20261021,
+    "policy_seed": 20261022,
+    "bootstrap_seed": 20261023,
+    "replications": 1000,
+    "refit_validation": false
+  },
+  "economics_sha256": "dabbe96b6ac5e945b9eea85ce854d359c3329f7d3accfbfa1a01c93b4349e688",
+  "metrics": "IPW incremental retained and net GBP; paired percentile 95% customer bootstrap",
+  "freeze_order": [
+    "protocol",
+    "generation",
+    "features_only",
+    "policies",
+    "observed",
+    "oracle"
+  ],
+  "stage2_test_previously_examined": true
+}

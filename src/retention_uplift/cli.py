@@ -24,8 +24,16 @@ def main() -> None:
     stage2.add_argument("--input", type=Path, required=True)
     stage2.add_argument("--output", type=Path, required=True)
     stage2.add_argument("--bootstrap", type=int, default=1000)
+    stage3 = commands.add_parser("run-stage3")
+    stage3.add_argument("--cohort", type=Path, default=Path("configs/stage3-cohort.toml"))
+    stage3.add_argument("--economics", type=Path, default=Path("configs/economics.toml"))
+    stage3.add_argument("--models", type=Path, required=True)
+    stage3.add_argument("--training-source", type=Path, required=True)
+    stage3.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
-    if args.command == "generate":
+    if args.command == "run-stage3":
+        config = Config.read(args.cohort)
+    elif args.command == "generate":
         config = Config.read(args.config)
     else:
         raw = json.loads((args.input / "config.json").read_text(encoding="utf-8"))
@@ -33,6 +41,14 @@ def main() -> None:
         config = Config(**raw)
     spark = session(config)
     try:
+        if args.command == "run-stage3":
+            from retention_uplift.stage3 import run_stage3
+
+            report = run_stage3(
+                spark, args.cohort, args.models, args.training_source, args.economics, args.output
+            )
+            print(json.dumps({"customers": report["n_customers"], "output": str(args.output)}))
+            return
         if args.command == "run-stage2":
             from retention_uplift.stage2 import run_stage2
 
