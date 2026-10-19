@@ -115,6 +115,10 @@ Initial issues and resolutions:
    portable writer avoids that operation, and its output was read and validated with Spark.
 3. An initial integration run had 13 passes and one failure: floating-point standard deviation varied
    slightly across partitions. Replaced it with integer monetary moments. The final full suite passed.
+4. The first clean Ubuntu CI run installed all dependencies and passed 31 tests, but four tests
+   could not create their temporary directories because the ignored data/ parent was absent.
+   Added data/.gitkeep with an ignore exception; all generated contents remain ignored. Updated
+   deprecated GitHub action versions. The follow-up CI result is recorded in the delivery message.
 
 Spark startup still reported missing winutils/native Hadoop and JVM module warnings. PySpark also
 printed process-cleanup messages after the passing test run; the command exited zero and data checks
@@ -154,8 +158,9 @@ Smoke: seed 20261019, local[2], eight partitions. Normal tests do not generate 1
 An isolated workspace virtual environment installed test/Arrow dependencies and the package.
 It referenced the user's existing PySpark installation through a local, ignored .pth file to avoid
 duplicating its large distribution. The original repository/virtual environment was not modified.
-Editable installation used --no-deps because these dependencies were already available. A completely
-fresh dependency install and Linux execution were not established by these local checks alone.
+Editable installation used --no-deps because these dependencies were already available. Separately,
+GitHub Actions verified a fresh `pip install -e ".[dev]"` on Ubuntu 24.04.5, Python 3.14.8 and
+Temurin Java 25.0.4+1. This cloud stack differs from the fully tested local Windows versions.
 
 CMD reproduction after activating an environment:
 
@@ -175,7 +180,8 @@ is tested separately. Cross-platform mathematical-library differences remain pos
 
 Dedicated branch: `feature/stage-1-data-foundation`, based on initial main commit
 `d8c82aa3e2866ca02cdddd6c92469b7467a27014`. The delivery message and pull request identify the
-published head commit and PR URL. Main is not automatically merged. Generated data, virtual
+published head commit and PR status. The connector returned HTTP 403 for PR creation; the normal
+browser route requires GitHub sign-in. Main is not automatically merged. Generated data, virtual
 environments, Spark artifacts, caches and binary Parquet files are excluded from Git; this report
 and aggregate JSON evidence are intentionally tracked. The existing Git history is preserved.
 
