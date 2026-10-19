@@ -116,7 +116,12 @@ All fintech customers, history, offers and randomization are simulated. Effect a
 
 ## I. GitHub delivery
 
-Branch: `feature/stage-2-uplift-modelling`, based on merged Stage 1 main commit `aeec3a3`. Final commit, PR URL and CI status are recorded in the delivered chat report after publishing. The PR must remain open and unmerged. Generated datasets, fitted binaries, manifests and per-customer scores are excluded from Git; only source, tests and aggregate evidence are tracked.
+Branch: `feature/stage-2-uplift-modelling`, based on merged Stage 1 main commit `aeec3a3`.
+[Pull request #2](https://github.com/tabishiqbal03/customer-retention-uplift-system/pull/2)
+is open against main and remains unmerged. The PR's Commits and Checks tabs provide the
+canonical final revision and live CI status; the delivered chat report records the verified
+final SHA and CI result. Generated datasets, fitted binaries, manifests and per-customer
+scores are excluded from Git; only source, tests and aggregate evidence are tracked.
 
 ## J. Stage 3 readiness
 
