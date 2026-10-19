@@ -138,7 +138,7 @@ All customers/transactions and response mechanisms are designed simulations. Fin
 
 ## K. GitHub delivery
 
-Branch: `feature/stage-3-profit-optimization`, based on merged Stage 2 main `df2db54`. The delivered PR targets main and must remain unmerged. The final chat delivery records the exact head SHA, PR link and independently checked CI result; this avoids embedding a self-referential commit hash. No Stage 4 work is included.
+Branch: `feature/stage-3-profit-optimization`, based on merged Stage 2 main `df2db54`. [PR #3](https://github.com/tabishiqbal03/customer-retention-uplift-system/pull/3) is open against main and remains unmerged. Implementation commit: `4c7b97dbae8817a34b155f22e271e12a372f3519`. The final chat delivery records the exact head SHA, PR link and independently checked CI result; this avoids embedding a self-referential commit hash. No Stage 4 work is included.
 
 ## L. Stage 4 readiness
 
