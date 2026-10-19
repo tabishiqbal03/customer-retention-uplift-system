@@ -10,7 +10,22 @@ from retention_uplift.storage import write_table
 pytestmark = pytest.mark.integration
 
 
-def test_end_to_end_parquet_smoke_and_no_overwrite(spark, tmp_path):
+def test_end_to_end_parquet_smoke_and_no_overwrite(spark, tmp_path, monkeypatch):
+    import retention_uplift.pipeline as pipeline
+
+    build, read = pipeline.build_tables, pipeline.read_tables
+    generated = {}
+
+    def record_tables(*args):
+        generated.update(build(*args))
+        return generated
+
+    def verify_released(*args):
+        assert generated and all(not frame.is_cached for frame in generated.values())
+        return read(*args)
+
+    monkeypatch.setattr(pipeline, "build_tables", record_tables)
+    monkeypatch.setattr(pipeline, "read_tables", verify_released)
     output = tmp_path / "smoke"
     report = run(spark, Config(customers=32, partitions=2), output, writer="portable")
     assert report["row_counts"]["features"] == 32

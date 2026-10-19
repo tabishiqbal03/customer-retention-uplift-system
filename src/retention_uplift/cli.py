@@ -20,6 +20,10 @@ def main() -> None:
     generate.add_argument("--writer", choices=("auto", "portable", "spark"), default="auto")
     validate = commands.add_parser("validate")
     validate.add_argument("--input", type=Path, required=True)
+    stage2 = commands.add_parser("run-stage2")
+    stage2.add_argument("--input", type=Path, required=True)
+    stage2.add_argument("--output", type=Path, required=True)
+    stage2.add_argument("--bootstrap", type=int, default=1000)
     args = parser.parse_args()
     if args.command == "generate":
         config = Config.read(args.config)
@@ -29,6 +33,12 @@ def main() -> None:
         config = Config(**raw)
     spark = session(config)
     try:
+        if args.command == "run-stage2":
+            from retention_uplift.stage2 import run_stage2
+
+            report = run_stage2(spark, args.input, args.output, args.bootstrap)
+            print(json.dumps(report, indent=2))
+            return
         report = (
             run(spark, config, args.output, args.writer)
             if args.command == "generate"

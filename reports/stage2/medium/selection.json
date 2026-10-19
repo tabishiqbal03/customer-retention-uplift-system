@@ -1,0 +1,71 @@
+{
+  "selected_uplift": "s",
+  "attempts": [
+    {
+      "model": "constant",
+      "leaves": 7,
+      "validation_effect_loss": 0.0008761111111111075
+    },
+    {
+      "model": "t",
+      "leaves": 7,
+      "validation_effect_loss": 0.009236146486888117
+    },
+    {
+      "model": "t",
+      "leaves": 15,
+      "validation_effect_loss": 0.017611979617999464
+    },
+    {
+      "model": "s",
+      "leaves": 7,
+      "validation_effect_loss": 0.0006440000947760955
+    },
+    {
+      "model": "s",
+      "leaves": 15,
+      "validation_effect_loss": 0.0026162965560812836
+    },
+    {
+      "model": "churn",
+      "C": 0.1,
+      "validation_brier": 0.2164811398898447
+    },
+    {
+      "model": "churn",
+      "C": 1.0,
+      "validation_brier": 0.21667200750105187
+    }
+  ],
+  "iterations": 100,
+  "features": [
+    "tenure_days",
+    "transaction_count",
+    "monthly_frequency",
+    "card_spend_gbp",
+    "mean_transaction_gbp",
+    "transaction_stddev_gbp",
+    "active_months",
+    "recency_days",
+    "transactions_30d",
+    "transactions_90d",
+    "transactions_previous_30d",
+    "activity_change_30d",
+    "card_spend_30d_gbp",
+    "card_spend_90d_gbp",
+    "card_count",
+    "savings_count",
+    "transfer_count",
+    "products_used",
+    "card_share",
+    "groceries_share",
+    "transport_share",
+    "leisure_share"
+  ],
+  "split_seed": 20261020,
+  "model_seed": 20261021,
+  "policy_seed": 20261022,
+  "bootstrap_seed": 20261023,
+  "replications": 1000,
+  "refit_validation": false
+}

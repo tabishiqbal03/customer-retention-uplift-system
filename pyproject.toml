@@ -4,10 +4,14 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "retention-uplift"
-version = "0.1.0"
-description = "Synthetic randomized retention experiment and leakage-safe Spark features"
-requires-python = ">=3.11"
-dependencies = ["pyspark==4.2.0", "pyarrow==26.0.0"]
+version = "0.2.0"
+description = "Synthetic retention experiments, causal uplift models and held-out policy evaluation"
+requires-python = ">=3.12"
+dependencies = [
+    "pyspark==4.2.0", "pyarrow==26.0.0", "numpy==2.5.4",
+    "scikit-learn==1.9.1", "scipy==1.18.1", "matplotlib==3.11.2",
+    "joblib==1.6.0", "threadpoolctl==3.7.0",
+]
 
 [project.optional-dependencies]
 dev = ["pytest==9.1.1", "ruff==0.17.1"]

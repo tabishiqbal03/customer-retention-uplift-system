@@ -1,15 +1,16 @@
 # Customer Retention Uplift & Decision Intelligence System
 
-**Stage 1: synthetic randomized experiment and PySpark data foundation.**
+**Stage 2: churn baselines, causal uplift modelling and held-out targeting evaluation.**
 
 Which fintech customers should receive a retention offer so that it changes behaviour?
 A churn score estimates risk; uplift estimates the change caused by an intervention.
 A high-risk customer may ignore an offer, while a moderately at-risk customer may respond.
-Later stages will investigate this distinction with this reproducible randomized dataset.
+Stage 2 investigates this distinction with this reproducible randomized dataset.
 
 Stage 1 generates customers, historical transactions, randomized assignments, observed outcomes
 and hidden expected effects. It builds pre-offer features and validates their integrity.
-There are **no trained models, targeting policies, profit optimisation or AI services** yet.
+Stage 2 adds control-only churn prediction, constant/T/S uplift estimators and equal-outreach
+policy evaluation. Profit optimisation and AI services remain outside this stage.
 
 All customer and transaction data are synthetic. Behaviour and offer responsiveness are designed
 assumptions, the experiment is simulated, and known treatment effects are synthetic ground truth.
@@ -24,7 +25,7 @@ directory if Java is not already configured. No unofficial Hadoop binaries are r
 ```bat
 git clone https://github.com/tabishiqbal03/customer-retention-uplift-system.git
 cd customer-retention-uplift-system
-git checkout feature/stage-1-data-foundation
+git checkout feature/stage-2-uplift-modelling
 py -3.14 -m venv .venv
 .venv\Scripts\activate
 python -m pip install -e ".[dev]"
@@ -36,7 +37,7 @@ python -m retention_uplift.cli generate --config configs/smoke.toml --output dat
 python -m retention_uplift.cli validate --input data/smoke
 ```
 
-The checkout command applies while Stage 1 awaits merge. With an existing environment, activate
+The checkout command applies while Stage 2 awaits merge. With an existing environment, activate
 it and start at installation. On POSIX use `python3 -m venv .venv` and `source .venv/bin/activate`;
 the Python commands are identical. `retention-data` is an equivalent installed CLI entry point.
 
@@ -117,9 +118,25 @@ observed arm rates and a descriptive 95% interval are reported. Sampling variati
 observed effects need not exactly equal oracle effects. Statistical warnings remain visible and
 do not cause rerandomization or seed selection.
 
-## Stage 2 roadmap — not implemented
+## Stage 2 workflow
 
-Create customer-level held-out splits, establish churn baselines and train uplift estimators on
-randomized observations. Evaluate held-out effects using randomized outcomes and isolated oracle
-truth. Costs, policy value and external-data validation require further design. Stage 1 makes no
-model-performance or targeting-policy claims.
+```bat
+python -m retention_uplift.cli generate --config configs/medium.toml --output data/medium
+python -m retention_uplift.cli run-stage2 --input data/medium --output data/stage2-medium
+```
+
+Use `configs/evaluation.toml` for 25,000 customers, or `configs/standard.toml` for the
+100,000-customer profile, with new output paths. The 100,000 attempt exhausted the Java heap
+on this machine and is not a verified modelling benchmark. The workflow creates
+60/20/20 customer splits, validates seven modest candidates, freezes model/policy selection,
+then evaluates untouched customers. Training never reads oracle truth. Positive uplift targeting,
+random selection and highest untreated churn risk receive identical actual outreach counts.
+Observed incremental retention uses known-propensity weighting with paired bootstrap intervals.
+No model is assumed to win. Oracle diagnostics include inaccessible latent variation and are
+not real-world causal validation. See [the full protocol](docs/modelling.md) and the
+[Stage 2 completion report](reports/stage-2-completion.md) for measured findings and limitations.
+
+New modules: `modelling_data.py` (bounded Spark bridge/splits), `models.py` (training/selection),
+`policy.py` (allocation/IPW/bootstrap), `evaluation.py` (final diagnostics), and
+`stage2.py` / `stage2_reporting.py` (artifacts/figures). Local models, manifests and per-customer
+scores live under ignored `data/`; only aggregate evidence is committed. Stage 3 is not implemented.
