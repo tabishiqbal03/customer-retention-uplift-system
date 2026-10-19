@@ -58,6 +58,10 @@ def run(spark: SparkSession, config: Config, output: Path, writer: str = "auto")
             name: write_table(tables[name], output / relative, writer)
             for name, relative in LAYOUT.items()
         }
+        # Generation is complete. Do not retain its cache while validating disk copies.
+        # Blocking release avoids overlapping two representations on small local heaps.
+        for frame in tables.values():
+            frame.unpersist(blocking=True)
         # Validate actual persisted data as well as generation plans.
         saved = read_tables(spark, output)
         disk_report = validate_tables(saved, config)

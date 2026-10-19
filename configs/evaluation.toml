@@ -1,0 +1,4 @@
+customers = 25000
+seed = 20261019
+partitions = 32
+master = "local[2]"

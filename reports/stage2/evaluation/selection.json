@@ -1,0 +1,82 @@
+{
+  "selected_uplift": "t",
+  "selected_leaves": {
+    "t": 7,
+    "s": 7
+  },
+  "selected_churn_C": 0.1,
+  "tree_parameters": {
+    "learning_rate": 0.05,
+    "min_samples_leaf": 40,
+    "l2_regularization": 10,
+    "early_stopping": false
+  },
+  "attempts": [
+    {
+      "model": "constant",
+      "leaves": 7,
+      "validation_effect_loss": 0.0006282524397552869
+    },
+    {
+      "model": "t",
+      "leaves": 7,
+      "validation_effect_loss": -0.000630721369146314
+    },
+    {
+      "model": "t",
+      "leaves": 15,
+      "validation_effect_loss": 0.0007675671442308696
+    },
+    {
+      "model": "s",
+      "leaves": 7,
+      "validation_effect_loss": -0.0004951350106466637
+    },
+    {
+      "model": "s",
+      "leaves": 15,
+      "validation_effect_loss": -4.813140614461577e-05
+    },
+    {
+      "model": "churn",
+      "C": 0.1,
+      "validation_brier": 0.2197834830572405
+    },
+    {
+      "model": "churn",
+      "C": 1.0,
+      "validation_brier": 0.21979769863389148
+    }
+  ],
+  "iterations": 100,
+  "features": [
+    "tenure_days",
+    "transaction_count",
+    "monthly_frequency",
+    "card_spend_gbp",
+    "mean_transaction_gbp",
+    "transaction_stddev_gbp",
+    "active_months",
+    "recency_days",
+    "transactions_30d",
+    "transactions_90d",
+    "transactions_previous_30d",
+    "activity_change_30d",
+    "card_spend_30d_gbp",
+    "card_spend_90d_gbp",
+    "card_count",
+    "savings_count",
+    "transfer_count",
+    "products_used",
+    "card_share",
+    "groceries_share",
+    "transport_share",
+    "leisure_share"
+  ],
+  "split_seed": 20261020,
+  "model_seed": 20261021,
+  "policy_seed": 20261022,
+  "bootstrap_seed": 20261023,
+  "replications": 1000,
+  "refit_validation": false
+}

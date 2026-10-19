@@ -1,0 +1,106 @@
+{
+  "structural_validation": "passed",
+  "row_counts": {
+    "customers": 10000,
+    "transactions": 512183,
+    "features": 10000,
+    "assignments": 10000,
+    "outcomes": 10000,
+    "truth": 10000
+  },
+  "warnings": [],
+  "treatment_fraction": 0.502,
+  "allocation_z": 0.40000000000000036,
+  "covariate_balance": {
+    "tenure_days": {
+      "standardized_difference": 0.011195494692523587,
+      "z": 0.5597858419813285
+    },
+    "transaction_count": {
+      "standardized_difference": 0.033037570513450076,
+      "z": 1.6519116168375445
+    },
+    "card_spend_gbp": {
+      "standardized_difference": 0.03343553292089454,
+      "z": 1.671807243547695
+    },
+    "recency_days": {
+      "standardized_difference": -0.005106738834088432,
+      "z": -0.2553315411229403
+    }
+  },
+  "true_ate": 0.014690174030681069,
+  "tau_min": -0.33637394693515454,
+  "tau_max": 0.3924836156531028,
+  "positive_share": 0.4501,
+  "near_zero_share": 0.1727,
+  "negative_share": 0.3772,
+  "treated_retention_rate": 0.599003984063745,
+  "control_retention_rate": 0.5907630522088353,
+  "treated_customers": 5020,
+  "control_customers": 4980,
+  "observed_difference": 0.008240931854909705,
+  "difference_standard_error": 0.009819069864096143,
+  "difference_95ci": [
+    -0.011004445078718735,
+    0.027486308788538145
+  ],
+  "ate_discrepancy": -0.006449242175771364,
+  "fingerprints": {
+    "customers": "342512697944520812583",
+    "transactions": "883610936600366264142",
+    "features": "-143934979282831463195",
+    "assignments": "-677184683086426809136",
+    "outcomes": "-97524282901695754724",
+    "truth": "-366825987290493666306"
+  },
+  "config": {
+    "customers": 10000,
+    "seed": 20261019,
+    "history_start": "2025-01-01",
+    "assignment_date": "2026-01-01",
+    "outcome_days": 30,
+    "treatment_probability": 0.5,
+    "partitions": 16,
+    "master": "local[2]",
+    "mechanism": {
+      "baseline_intercept": -0.8,
+      "engagement_weight": 2.3,
+      "trend_weight": 1.0,
+      "savings_weight": 0.25,
+      "latent_noise": 0.6,
+      "benefit_strength": 1.8,
+      "harm_strength": 1.4,
+      "engagement_noise": 0.22,
+      "trend_noise": 0.28,
+      "preference_noise": 0.22,
+      "monthly_rate": 7.0,
+      "max_monthly_transactions": 60,
+      "mean_spend_gbp": 35.0,
+      "spend_log_sigma": 0.85
+    }
+  },
+  "python": "3.14.3",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "spark": "4.2.0",
+  "java": "25.0.2",
+  "writers": {
+    "customers": "portable",
+    "transactions": "portable",
+    "features": "portable",
+    "assignments": "portable",
+    "outcomes": "portable",
+    "truth": "portable"
+  },
+  "parquet_readback": "passed",
+  "elapsed_seconds": 115.83227620000253,
+  "parquet_bytes": 8408659,
+  "schemas": {
+    "customers": "struct<customer_id:string,tenure_days:int,snapshot_date:date>",
+    "transactions": "struct<customer_id:string,transaction_id:string,event_date:date,product:string,category:string,amount_pence:bigint,currency:string>",
+    "features": "struct<customer_id:string,tenure_days:int,transaction_count:bigint,monthly_frequency:double,card_spend_gbp:double,mean_transaction_gbp:double,transaction_stddev_gbp:double,active_months:bigint,recency_days:int,transactions_30d:bigint,transactions_90d:bigint,transactions_previous_30d:bigint,activity_change_30d:bigint,card_spend_30d_gbp:double,card_spend_90d_gbp:double,card_count:bigint,savings_count:bigint,transfer_count:bigint,products_used:int,card_share:double,groceries_share:double,transport_share:double,leisure_share:double,feature_cutoff:date>",
+    "assignments": "struct<customer_id:string,treatment:int,propensity:double,assignment_date:date>",
+    "outcomes": "struct<customer_id:string,qualifying_activity_days:int,retained:int,outcome_start:date,outcome_end:date>",
+    "truth": "struct<customer_id:string,archetype:string,engagement:double,trend:double,sensitivity:double,aversion:double,tenure_days:int,has_savings:int,has_transfers:int,spend_scale:double,residual:double,inactive:int,p0:double,p1:double,tau:double>"
+  }
+}

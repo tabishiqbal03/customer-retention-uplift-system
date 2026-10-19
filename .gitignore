@@ -228,3 +228,5 @@ __marimo__/
 derby.log
 *.parquet
 *.crc
+*.joblib
+*.npz

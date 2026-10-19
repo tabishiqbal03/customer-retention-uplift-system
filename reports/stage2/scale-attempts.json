@@ -1,0 +1,16 @@
+{
+  "largest_verified_customers": 25000,
+  "standard_attempt": {
+    "requested_customers": 100000,
+    "verified": false,
+    "failure": "Java heap exhaustion during Parquet readback validation",
+    "success_manifest": false,
+    "used_for_modelling": false,
+    "retried_after_cache_fix": false
+  },
+  "memory_snapshot_kib": {
+    "total_visible": 8148984,
+    "free_at_check": 624628
+  },
+  "note": "Machine-wide memory snapshot, not measured process peak memory. Heap not increased."
+}
