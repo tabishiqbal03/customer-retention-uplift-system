@@ -218,3 +218,12 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Generated synthetic data and Spark local state (source/configs/reports are tracked).
+/data/
+/artifacts/
+/spark-warehouse/
+/metastore_db/
+derby.log
+*.parquet
+*.crc
