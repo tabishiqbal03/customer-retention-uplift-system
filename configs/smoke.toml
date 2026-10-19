@@ -1,0 +1,12 @@
+customers = 1000
+seed = 20261019
+history_start = "2025-01-01"
+assignment_date = "2026-01-01"
+outcome_days = 30
+treatment_probability = 0.5
+partitions = 8
+master = "local[2]"
+
+[mechanism]
+# All remaining coefficients have documented defaults in config.py.
+monthly_rate = 7.0
