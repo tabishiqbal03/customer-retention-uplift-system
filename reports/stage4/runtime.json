@@ -1,0 +1,25 @@
+{
+  "python": "3.14.3",
+  "platform": "Windows 11",
+  "ram_gb_approx": 8,
+  "ollama_version": "ollama version is 0.40.6",
+  "model": "qwen2.5:3b",
+  "model_details": "Model\n    architecture        qwen2     \n    parameters          3.1B      \n    context length      32768     \n    embedding length    2048      \n    quantization        Q4_K_M    \n\n  Capabilities\n    completion    \n    tools         \n\n  System\n    You are Qwen, created by Alibaba Cloud. You are a helpful assistant.    \n\n  License\n    Qwen RESEARCH LICENSE AGREEMENT                                     \n    Qwen RESEARCH LICENSE AGREEMENT Release Date: September 19, 2024    \n    ...",
+  "packages": {
+    "fastapi": "0.150.0",
+    "pydantic": "2.14.1",
+    "uvicorn": "0.54.0",
+    "httpx": "0.28.1",
+    "pytest": "9.1.1",
+    "ruff": "0.17.1"
+  },
+  "model_downloaded_for_stage4": false,
+  "note": "Local hardware snapshot; no scalability or production inference claim.",
+  "resource_stop": {
+    "free_memory_kib": 305196,
+    "total_memory_kib": 8148984,
+    "reason": "Stopped after severe memory pressure and a 247.81-second failed request; bound results are partial.",
+    "recorded_bound_cases": 5,
+    "ollama_unloaded_after_run": true
+  }
+}

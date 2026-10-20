@@ -1,0 +1,391 @@
+{
+  "historical_head": "8cdc1d6ac9ffebcb7dc7b3eb241343c2d7ca6927",
+  "patterns": {
+    "basic": {
+      "counts": {
+        "returned": 33,
+        "schema_valid": 33,
+        "missing_required": 22,
+        "unknown_ids": 0,
+        "duplicate_ids": 0,
+        "transport_errors": 8
+      },
+      "examples": [
+        {
+          "case": "case-01",
+          "returned": [
+            "primary_decision",
+            "primary_spend",
+            "primary_predicted",
+            "primary_observed",
+            "primary_interpretation",
+            "budget"
+          ],
+          "missing": [
+            "primary_count"
+          ]
+        },
+        {
+          "case": "case-02",
+          "returned": [
+            "primary_decision",
+            "primary_spend",
+            "primary_predicted",
+            "primary_observed",
+            "primary_interpretation",
+            "budget"
+          ],
+          "missing": [
+            "primary_count"
+          ]
+        },
+        {
+          "case": "case-03",
+          "returned": [
+            "selected"
+          ],
+          "missing": [
+            "budget",
+            "capacity",
+            "rule",
+            "spend_gbp",
+            "unspent_gbp"
+          ]
+        },
+        {
+          "case": "case-03",
+          "returned": [
+            "selected",
+            "budget",
+            "capacity"
+          ],
+          "missing": [
+            "rule",
+            "spend_gbp",
+            "unspent_gbp"
+          ]
+        },
+        {
+          "case": "case-04",
+          "returned": [
+            "budget",
+            "spend_gbp"
+          ],
+          "missing": [
+            "capacity",
+            "rule",
+            "selected",
+            "unspent_gbp"
+          ]
+        }
+      ]
+    },
+    "bound": {
+      "counts": {
+        "returned": 5,
+        "schema_valid": 5,
+        "missing_required": 3,
+        "unknown_ids": 0,
+        "duplicate_ids": 0,
+        "transport_errors": 3
+      },
+      "examples": [
+        {
+          "case": "case-01",
+          "returned": [
+            "primary_interpretation",
+            "primary_observed"
+          ],
+          "missing": [
+            "budget",
+            "primary_count",
+            "primary_decision",
+            "primary_predicted",
+            "primary_spend"
+          ]
+        },
+        {
+          "case": "case-02",
+          "returned": [
+            "primary_decision",
+            "primary_interpretation",
+            "primary_observed",
+            "primary_predicted",
+            "primary_spend",
+            "budget"
+          ],
+          "missing": [
+            "primary_count"
+          ]
+        },
+        {
+          "case": "case-03",
+          "returned": [
+            "selected",
+            "budget",
+            "capacity",
+            "rule"
+          ],
+          "missing": [
+            "spend_gbp",
+            "unspent_gbp"
+          ]
+        }
+      ]
+    }
+  },
+  "payload_comparison": [
+    {
+      "id": "case-01",
+      "mandatory_ids": 7,
+      "old_payload_bytes": 2114,
+      "old_message_chars": 1537,
+      "new_payload_bytes": 1228,
+      "new_message_chars": 671
+    },
+    {
+      "id": "case-02",
+      "mandatory_ids": 7,
+      "old_payload_bytes": 2117,
+      "old_message_chars": 1540,
+      "new_payload_bytes": 1231,
+      "new_message_chars": 674
+    },
+    {
+      "id": "case-03",
+      "mandatory_ids": 6,
+      "old_payload_bytes": 1854,
+      "old_message_chars": 1288,
+      "new_payload_bytes": 1257,
+      "new_message_chars": 700
+    },
+    {
+      "id": "case-04",
+      "mandatory_ids": 6,
+      "old_payload_bytes": 1858,
+      "old_message_chars": 1292,
+      "new_payload_bytes": 1261,
+      "new_message_chars": 704
+    },
+    {
+      "id": "case-05",
+      "mandatory_ids": 6,
+      "old_payload_bytes": 1869,
+      "old_message_chars": 1303,
+      "new_payload_bytes": 1272,
+      "new_message_chars": 715
+    },
+    {
+      "id": "case-06",
+      "mandatory_ids": 6,
+      "old_payload_bytes": 1854,
+      "old_message_chars": 1288,
+      "new_payload_bytes": 1257,
+      "new_message_chars": 700
+    },
+    {
+      "id": "case-07",
+      "mandatory_ids": 10,
+      "old_payload_bytes": 2577,
+      "old_message_chars": 1968,
+      "new_payload_bytes": 1298,
+      "new_message_chars": 741
+    },
+    {
+      "id": "case-08",
+      "mandatory_ids": 10,
+      "old_payload_bytes": 2569,
+      "old_message_chars": 1960,
+      "new_payload_bytes": 1290,
+      "new_message_chars": 733
+    },
+    {
+      "id": "case-09",
+      "mandatory_ids": 10,
+      "old_payload_bytes": 2585,
+      "old_message_chars": 1976,
+      "new_payload_bytes": 1306,
+      "new_message_chars": 749
+    },
+    {
+      "id": "case-10",
+      "mandatory_ids": 6,
+      "old_payload_bytes": 2032,
+      "old_message_chars": 1466,
+      "new_payload_bytes": 1269,
+      "new_message_chars": 712
+    },
+    {
+      "id": "case-11",
+      "mandatory_ids": 6,
+      "old_payload_bytes": 2018,
+      "old_message_chars": 1452,
+      "new_payload_bytes": 1255,
+      "new_message_chars": 698
+    },
+    {
+      "id": "case-12",
+      "mandatory_ids": 6,
+      "old_payload_bytes": 2018,
+      "old_message_chars": 1452,
+      "new_payload_bytes": 1255,
+      "new_message_chars": 698
+    },
+    {
+      "id": "case-13",
+      "mandatory_ids": 6,
+      "old_payload_bytes": 2021,
+      "old_message_chars": 1455,
+      "new_payload_bytes": 1258,
+      "new_message_chars": 701
+    },
+    {
+      "id": "case-14",
+      "mandatory_ids": 14,
+      "old_payload_bytes": 3502,
+      "old_message_chars": 2851,
+      "new_payload_bytes": 1300,
+      "new_message_chars": 743
+    },
+    {
+      "id": "case-15",
+      "mandatory_ids": 14,
+      "old_payload_bytes": 3512,
+      "old_message_chars": 2861,
+      "new_payload_bytes": 1300,
+      "new_message_chars": 743
+    },
+    {
+      "id": "case-16",
+      "mandatory_ids": 14,
+      "old_payload_bytes": 3554,
+      "old_message_chars": 2903,
+      "new_payload_bytes": 1301,
+      "new_message_chars": 744
+    },
+    {
+      "id": "case-17",
+      "mandatory_ids": 14,
+      "old_payload_bytes": 2884,
+      "old_message_chars": 2229,
+      "new_payload_bytes": 1301,
+      "new_message_chars": 744
+    },
+    {
+      "id": "case-18",
+      "mandatory_ids": 7,
+      "old_payload_bytes": 2147,
+      "old_message_chars": 1570,
+      "new_payload_bytes": 1241,
+      "new_message_chars": 684
+    },
+    {
+      "id": "case-19",
+      "mandatory_ids": 10,
+      "old_payload_bytes": 2704,
+      "old_message_chars": 2095,
+      "new_payload_bytes": 1314,
+      "new_message_chars": 757
+    },
+    {
+      "id": "case-20",
+      "mandatory_ids": 6,
+      "old_payload_bytes": 2089,
+      "old_message_chars": 1523,
+      "new_payload_bytes": 1256,
+      "new_message_chars": 699
+    },
+    {
+      "id": "case-21",
+      "mandatory_ids": 9,
+      "old_payload_bytes": 2258,
+      "old_message_chars": 1659,
+      "new_payload_bytes": 1260,
+      "new_message_chars": 703
+    },
+    {
+      "id": "case-22",
+      "mandatory_ids": 9,
+      "old_payload_bytes": 2258,
+      "old_message_chars": 1659,
+      "new_payload_bytes": 1260,
+      "new_message_chars": 703
+    },
+    {
+      "id": "case-23",
+      "mandatory_ids": 9,
+      "old_payload_bytes": 2260,
+      "old_message_chars": 1661,
+      "new_payload_bytes": 1262,
+      "new_message_chars": 705
+    },
+    {
+      "id": "case-24",
+      "mandatory_ids": 9,
+      "old_payload_bytes": 2272,
+      "old_message_chars": 1673,
+      "new_payload_bytes": 1274,
+      "new_message_chars": 717
+    },
+    {
+      "id": "case-25",
+      "mandatory_ids": 4,
+      "old_payload_bytes": 1753,
+      "old_message_chars": 1210,
+      "new_payload_bytes": 1288,
+      "new_message_chars": 731
+    },
+    {
+      "id": "case-26",
+      "mandatory_ids": 4,
+      "old_payload_bytes": 1753,
+      "old_message_chars": 1210,
+      "new_payload_bytes": 1288,
+      "new_message_chars": 731
+    },
+    {
+      "id": "case-27",
+      "mandatory_ids": 1,
+      "old_payload_bytes": 1371,
+      "old_message_chars": 860,
+      "new_payload_bytes": 1285,
+      "new_message_chars": 728
+    },
+    {
+      "id": "case-28",
+      "mandatory_ids": 1,
+      "old_payload_bytes": 1364,
+      "old_message_chars": 853,
+      "new_payload_bytes": 1278,
+      "new_message_chars": 721
+    }
+  ],
+  "summary": {
+    "mandatory_ids": {
+      "min": 1,
+      "median": 7.0,
+      "max": 14
+    },
+    "old_payload_bytes": {
+      "min": 1364,
+      "median": 2115.5,
+      "max": 3554
+    },
+    "new_payload_bytes": {
+      "min": 1228,
+      "median": 1270.5,
+      "max": 1314
+    },
+    "old_message_chars": {
+      "min": 853,
+      "median": 1538.5,
+      "max": 2903
+    },
+    "new_message_chars": {
+      "min": 671,
+      "median": 713.5,
+      "max": 757
+    }
+  },
+  "limitations": "Historical recordings omit token counts and stop reasons; no proof of output truncation or context overflow. New payload comparison uses bound prompts on both versions, same questions; bytes are not tokens."
+}

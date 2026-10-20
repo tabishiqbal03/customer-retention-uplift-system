@@ -1,0 +1,534 @@
+[
+  {
+    "demo": "A",
+    "request": {
+      "question": "What campaign is recommended?",
+      "scenario": "base",
+      "mode": "deterministic"
+    },
+    "http_status": 200,
+    "response": {
+      "schema_version": 1,
+      "answer": "base \u2014 Saved recommendation: inconclusive no rollout.\n\nbase \u2014 profit: selected: 1,500 customers.\n\nbase \u2014 profit: spend gbp: 3,000.00 GBP.\n\nbase \u2014 profit: predicted net gbp: 5,187.17 GBP.\n\nbase \u2014 observed-outcome estimated incremental net: 3,800.00 GBP; pointwise 95% CI [-698.15, 8,308.20] GBP. This is not realized cash.\n\nbase: The interval spans negative and positive values; a positive point estimate does not establish positive net value. Do not roll out on this evidence.\n\ndesign \u2014 Maximum campaign budget: 3,000.00 GBP.\n\nAll customers are synthetic and all economics are illustrative. No real campaign or profit has been demonstrated.\n\nIntervals are pointwise and unadjusted; they condition on the fitted rules and assumed economics and exclude training and population-shift uncertainty.",
+      "question_category": "campaign",
+      "scenario": "base",
+      "evidence_references": [
+        {
+          "reference": "scenarios.base.recommendation",
+          "artifact": "stage3-metrics-v1",
+          "artifact_sha256": "a20186b0c8974ef525dc76f8ba73792a8f049a802bf07b6f92300214503c033e",
+          "field_path": "scenarios.base.recommendation",
+          "scenario": "base",
+          "value": "inconclusive_no_rollout",
+          "units": "recommendation",
+          "category": "recommendation",
+          "label": "Saved recommendation"
+        },
+        {
+          "reference": "scenarios.base.planning.profit.selected",
+          "artifact": "stage3-metrics-v1",
+          "artifact_sha256": "a20186b0c8974ef525dc76f8ba73792a8f049a802bf07b6f92300214503c033e",
+          "field_path": "scenarios.base.planning.profit.selected",
+          "scenario": "base",
+          "value": 1500,
+          "units": "customers",
+          "category": "prediction",
+          "label": "profit: selected"
+        },
+        {
+          "reference": "scenarios.base.planning.profit.spend_gbp",
+          "artifact": "stage3-metrics-v1",
+          "artifact_sha256": "a20186b0c8974ef525dc76f8ba73792a8f049a802bf07b6f92300214503c033e",
+          "field_path": "scenarios.base.planning.profit.spend_gbp",
+          "scenario": "base",
+          "value": 3000.0,
+          "units": "GBP",
+          "category": "prediction",
+          "label": "profit: spend gbp"
+        },
+        {
+          "reference": "scenarios.base.planning.profit.predicted_net_gbp",
+          "artifact": "stage3-metrics-v1",
+          "artifact_sha256": "a20186b0c8974ef525dc76f8ba73792a8f049a802bf07b6f92300214503c033e",
+          "field_path": "scenarios.base.planning.profit.predicted_net_gbp",
+          "scenario": "base",
+          "value": 5187.167576299782,
+          "units": "GBP",
+          "category": "prediction",
+          "label": "profit: predicted net gbp"
+        },
+        {
+          "reference": "scenarios.base.observed.policies.profit.net_gbp.estimate",
+          "artifact": "stage3-metrics-v1",
+          "artifact_sha256": "a20186b0c8974ef525dc76f8ba73792a8f049a802bf07b6f92300214503c033e",
+          "field_path": "scenarios.base.observed.policies.profit.net_gbp.estimate",
+          "scenario": "base",
+          "value": 3800.0,
+          "units": "GBP",
+          "category": "observed_estimate",
+          "label": "profit: observed-outcome net_gbp"
+        },
+        {
+          "reference": "scenarios.base.observed.policies.profit.net_gbp.ci95",
+          "artifact": "stage3-metrics-v1",
+          "artifact_sha256": "a20186b0c8974ef525dc76f8ba73792a8f049a802bf07b6f92300214503c033e",
+          "field_path": "scenarios.base.observed.policies.profit.net_gbp.ci95",
+          "scenario": "base",
+          "value": [
+            -698.15,
+            8308.2
+          ],
+          "units": "GBP",
+          "category": "interval",
+          "label": "profit: pointwise 95% interval for net_gbp"
+        },
+        {
+          "reference": "protocol.economics.budget",
+          "artifact": "stage3-metrics-v1",
+          "artifact_sha256": "a20186b0c8974ef525dc76f8ba73792a8f049a802bf07b6f92300214503c033e",
+          "field_path": "protocol.economics.budget",
+          "scenario": null,
+          "value": 3000.0,
+          "units": "GBP",
+          "category": "assumption",
+          "label": "Maximum campaign budget"
+        }
+      ],
+      "claim_ids": [
+        "primary_decision",
+        "primary_count",
+        "primary_spend",
+        "primary_predicted",
+        "primary_observed",
+        "primary_interpretation",
+        "budget"
+      ],
+      "limitations": [
+        "All customers are synthetic and all economics are illustrative. No real campaign or profit has been demonstrated.",
+        "Intervals are pointwise and unadjusted; they condition on the fitted rules and assumed economics and exclude training and population-shift uncertainty.",
+        "This is constrained claim composition, not unrestricted model-authored analysis."
+      ],
+      "confidence_or_evidence_status": "validated_saved_evidence",
+      "requires_human_review": true,
+      "supported": true,
+      "synthetic_data": true,
+      "illustrative_economics": true,
+      "execution_mode": "deterministic",
+      "model": null,
+      "attempts": 0,
+      "latency_seconds": 0.06819570000516251
+    }
+  },
+  {
+    "demo": "C",
+    "request": {
+      "question": "How many real Revolut customers benefited?",
+      "scenario": "base",
+      "mode": "deterministic"
+    },
+    "http_status": 200,
+    "response": {
+      "schema_version": 1,
+      "answer": "This question is outside the approved aggregate-report scope. No verified answer is available. Real deployment needs domain-validated contribution values and offer costs, privacy assessment, guardrails and genuine randomized evidence. This local demonstration is not a production rollout decision. All customers are synthetic and all economics are illustrative. No real campaign or profit has been demonstrated.",
+      "question_category": "unsupported",
+      "scenario": "base",
+      "evidence_references": [],
+      "claim_ids": [],
+      "limitations": [
+        "All customers are synthetic and all economics are illustrative. No real campaign or profit has been demonstrated.",
+        "No private customer data, unavailable metrics, arbitrary files or decision changes are exposed."
+      ],
+      "confidence_or_evidence_status": "unsupported_insufficient_evidence",
+      "requires_human_review": true,
+      "supported": false,
+      "synthetic_data": true,
+      "illustrative_economics": true,
+      "execution_mode": "scope_guard",
+      "model": null,
+      "attempts": 0,
+      "latency_seconds": 8.069997420534492e-05
+    }
+  },
+  {
+    "demo": "D",
+    "request": {
+      "question": "What happens if offer cost increases?",
+      "scenario": "base",
+      "mode": "deterministic",
+      "compare_scenario": "high_cost"
+    },
+    "http_status": 200,
+    "response": {
+      "schema_version": 1,
+      "answer": "base \u2014 Saved recommendation: inconclusive no rollout.\n\nbase \u2014 profit: selected: 1,500 customers.\n\nbase \u2014 profit: spend gbp: 3,000.00 GBP.\n\nbase \u2014 profit: predicted net gbp: 5,187.17 GBP.\n\nbase \u2014 observed-outcome estimated incremental net: 3,800.00 GBP; pointwise 95% CI [-698.15, 8,308.20] GBP. This is not realized cash.\n\nbase assumptions: contribution 40.00 GBP, offer cost 1.50 GBP and contact cost 0.50 GBP per customer. Usage-based value, where selected, varies by the documented multiplier.\n\nbase: The interval spans negative and positive values; a positive point estimate does not establish positive net value. Do not roll out on this evidence.\n\nhigh_cost \u2014 Saved recommendation: inconclusive no rollout.\n\nhigh_cost \u2014 profit: selected: 84 customers.\n\nhigh_cost \u2014 profit: spend gbp: 672.00 GBP.\n\nhigh_cost \u2014 profit: predicted net gbp: 72.86 GBP.\n\nhigh_cost \u2014 observed-outcome estimated incremental net: 688.00 GBP; pointwise 95% CI [-304.60, 1,736.20] GBP. This is not realized cash.\n\nhigh_cost assumptions: contribution 40.00 GBP, offer cost 7.50 GBP and contact cost 0.50 GBP per customer. Usage-based value, where selected, varies by the documented multiplier.\n\nhigh_cost: The interval spans negative and positive values; a positive point estimate does not establish positive net value. Do not roll out on this evidence.\n\nAll customers are synthetic and all economics are illustrative. No real campaign or profit has been demonstrated.\n\nIntervals are pointwise and unadjusted; they condition on the fitted rules and assumed economics and exclude training and population-shift uncertainty.",
+      "question_category": "sensitivity",
+      "scenario": "base",
+      "evidence_references": [
+        {
+          "reference": "scenarios.base.recommendation",
+          "artifact": "stage3-metrics-v1",
+          "artifact_sha256": "a20186b0c8974ef525dc76f8ba73792a8f049a802bf07b6f92300214503c033e",
+          "field_path": "scenarios.base.recommendation",
+          "scenario": "base",
+          "value": "inconclusive_no_rollout",
+          "units": "recommendation",
+          "category": "recommendation",
+          "label": "Saved recommendation"
+        },
+        {
+          "reference": "scenarios.base.planning.profit.selected",
+          "artifact": "stage3-metrics-v1",
+          "artifact_sha256": "a20186b0c8974ef525dc76f8ba73792a8f049a802bf07b6f92300214503c033e",
+          "field_path": "scenarios.base.planning.profit.selected",
+          "scenario": "base",
+          "value": 1500,
+          "units": "customers",
+          "category": "prediction",
+          "label": "profit: selected"
+        },
+        {
+          "reference": "scenarios.base.planning.profit.spend_gbp",
+          "artifact": "stage3-metrics-v1",
+          "artifact_sha256": "a20186b0c8974ef525dc76f8ba73792a8f049a802bf07b6f92300214503c033e",
+          "field_path": "scenarios.base.planning.profit.spend_gbp",
+          "scenario": "base",
+          "value": 3000.0,
+          "units": "GBP",
+          "category": "prediction",
+          "label": "profit: spend gbp"
+        },
+        {
+          "reference": "scenarios.base.planning.profit.predicted_net_gbp",
+          "artifact": "stage3-metrics-v1",
+          "artifact_sha256": "a20186b0c8974ef525dc76f8ba73792a8f049a802bf07b6f92300214503c033e",
+          "field_path": "scenarios.base.planning.profit.predicted_net_gbp",
+          "scenario": "base",
+          "value": 5187.167576299782,
+          "units": "GBP",
+          "category": "prediction",
+          "label": "profit: predicted net gbp"
+        },
+        {
+          "reference": "scenarios.base.observed.policies.profit.net_gbp.estimate",
+          "artifact": "stage3-metrics-v1",
+          "artifact_sha256": "a20186b0c8974ef525dc76f8ba73792a8f049a802bf07b6f92300214503c033e",
+          "field_path": "scenarios.base.observed.policies.profit.net_gbp.estimate",
+          "scenario": "base",
+          "value": 3800.0,
+          "units": "GBP",
+          "category": "observed_estimate",
+          "label": "profit: observed-outcome net_gbp"
+        },
+        {
+          "reference": "scenarios.base.observed.policies.profit.net_gbp.ci95",
+          "artifact": "stage3-metrics-v1",
+          "artifact_sha256": "a20186b0c8974ef525dc76f8ba73792a8f049a802bf07b6f92300214503c033e",
+          "field_path": "scenarios.base.observed.policies.profit.net_gbp.ci95",
+          "scenario": "base",
+          "value": [
+            -698.15,
+            8308.2
+          ],
+          "units": "GBP",
+          "category": "interval",
+          "label": "profit: pointwise 95% interval for net_gbp"
+        },
+        {
+          "reference": "scenarios.base.assumptions.value",
+          "artifact": "stage3-metrics-v1",
+          "artifact_sha256": "a20186b0c8974ef525dc76f8ba73792a8f049a802bf07b6f92300214503c033e",
+          "field_path": "scenarios.base.assumptions.value",
+          "scenario": "base",
+          "value": 40.0,
+          "units": "GBP",
+          "category": "assumption",
+          "label": "value"
+        },
+        {
+          "reference": "scenarios.base.assumptions.offer_cost",
+          "artifact": "stage3-metrics-v1",
+          "artifact_sha256": "a20186b0c8974ef525dc76f8ba73792a8f049a802bf07b6f92300214503c033e",
+          "field_path": "scenarios.base.assumptions.offer_cost",
+          "scenario": "base",
+          "value": 1.5,
+          "units": "GBP",
+          "category": "assumption",
+          "label": "offer cost"
+        },
+        {
+          "reference": "scenarios.base.assumptions.contact_cost",
+          "artifact": "stage3-metrics-v1",
+          "artifact_sha256": "a20186b0c8974ef525dc76f8ba73792a8f049a802bf07b6f92300214503c033e",
+          "field_path": "scenarios.base.assumptions.contact_cost",
+          "scenario": "base",
+          "value": 0.5,
+          "units": "GBP",
+          "category": "assumption",
+          "label": "contact cost"
+        },
+        {
+          "reference": "scenarios.high_cost.recommendation",
+          "artifact": "stage3-metrics-v1",
+          "artifact_sha256": "a20186b0c8974ef525dc76f8ba73792a8f049a802bf07b6f92300214503c033e",
+          "field_path": "scenarios.high_cost.recommendation",
+          "scenario": "high_cost",
+          "value": "inconclusive_no_rollout",
+          "units": "recommendation",
+          "category": "recommendation",
+          "label": "Saved recommendation"
+        },
+        {
+          "reference": "scenarios.high_cost.planning.profit.selected",
+          "artifact": "stage3-metrics-v1",
+          "artifact_sha256": "a20186b0c8974ef525dc76f8ba73792a8f049a802bf07b6f92300214503c033e",
+          "field_path": "scenarios.high_cost.planning.profit.selected",
+          "scenario": "high_cost",
+          "value": 84,
+          "units": "customers",
+          "category": "prediction",
+          "label": "profit: selected"
+        },
+        {
+          "reference": "scenarios.high_cost.planning.profit.spend_gbp",
+          "artifact": "stage3-metrics-v1",
+          "artifact_sha256": "a20186b0c8974ef525dc76f8ba73792a8f049a802bf07b6f92300214503c033e",
+          "field_path": "scenarios.high_cost.planning.profit.spend_gbp",
+          "scenario": "high_cost",
+          "value": 672.0,
+          "units": "GBP",
+          "category": "prediction",
+          "label": "profit: spend gbp"
+        },
+        {
+          "reference": "scenarios.high_cost.planning.profit.predicted_net_gbp",
+          "artifact": "stage3-metrics-v1",
+          "artifact_sha256": "a20186b0c8974ef525dc76f8ba73792a8f049a802bf07b6f92300214503c033e",
+          "field_path": "scenarios.high_cost.planning.profit.predicted_net_gbp",
+          "scenario": "high_cost",
+          "value": 72.85882210322063,
+          "units": "GBP",
+          "category": "prediction",
+          "label": "profit: predicted net gbp"
+        },
+        {
+          "reference": "scenarios.high_cost.observed.policies.profit.net_gbp.estimate",
+          "artifact": "stage3-metrics-v1",
+          "artifact_sha256": "a20186b0c8974ef525dc76f8ba73792a8f049a802bf07b6f92300214503c033e",
+          "field_path": "scenarios.high_cost.observed.policies.profit.net_gbp.estimate",
+          "scenario": "high_cost",
+          "value": 688.0,
+          "units": "GBP",
+          "category": "observed_estimate",
+          "label": "profit: observed-outcome net_gbp"
+        },
+        {
+          "reference": "scenarios.high_cost.observed.policies.profit.net_gbp.ci95",
+          "artifact": "stage3-metrics-v1",
+          "artifact_sha256": "a20186b0c8974ef525dc76f8ba73792a8f049a802bf07b6f92300214503c033e",
+          "field_path": "scenarios.high_cost.observed.policies.profit.net_gbp.ci95",
+          "scenario": "high_cost",
+          "value": [
+            -304.59999999999997,
+            1736.1999999999998
+          ],
+          "units": "GBP",
+          "category": "interval",
+          "label": "profit: pointwise 95% interval for net_gbp"
+        },
+        {
+          "reference": "scenarios.high_cost.assumptions.value",
+          "artifact": "stage3-metrics-v1",
+          "artifact_sha256": "a20186b0c8974ef525dc76f8ba73792a8f049a802bf07b6f92300214503c033e",
+          "field_path": "scenarios.high_cost.assumptions.value",
+          "scenario": "high_cost",
+          "value": 40.0,
+          "units": "GBP",
+          "category": "assumption",
+          "label": "value"
+        },
+        {
+          "reference": "scenarios.high_cost.assumptions.offer_cost",
+          "artifact": "stage3-metrics-v1",
+          "artifact_sha256": "a20186b0c8974ef525dc76f8ba73792a8f049a802bf07b6f92300214503c033e",
+          "field_path": "scenarios.high_cost.assumptions.offer_cost",
+          "scenario": "high_cost",
+          "value": 7.5,
+          "units": "GBP",
+          "category": "assumption",
+          "label": "offer cost"
+        },
+        {
+          "reference": "scenarios.high_cost.assumptions.contact_cost",
+          "artifact": "stage3-metrics-v1",
+          "artifact_sha256": "a20186b0c8974ef525dc76f8ba73792a8f049a802bf07b6f92300214503c033e",
+          "field_path": "scenarios.high_cost.assumptions.contact_cost",
+          "scenario": "high_cost",
+          "value": 0.5,
+          "units": "GBP",
+          "category": "assumption",
+          "label": "contact cost"
+        }
+      ],
+      "claim_ids": [
+        "primary_decision",
+        "primary_count",
+        "primary_spend",
+        "primary_predicted",
+        "primary_observed",
+        "primary_assumptions",
+        "primary_interpretation",
+        "comparison_decision",
+        "comparison_count",
+        "comparison_spend",
+        "comparison_predicted",
+        "comparison_observed",
+        "comparison_assumptions",
+        "comparison_interpretation"
+      ],
+      "limitations": [
+        "All customers are synthetic and all economics are illustrative. No real campaign or profit has been demonstrated.",
+        "Intervals are pointwise and unadjusted; they condition on the fitted rules and assumed economics and exclude training and population-shift uncertainty.",
+        "This is constrained claim composition, not unrestricted model-authored analysis."
+      ],
+      "confidence_or_evidence_status": "validated_saved_evidence",
+      "requires_human_review": true,
+      "supported": true,
+      "synthetic_data": true,
+      "illustrative_economics": true,
+      "execution_mode": "deterministic",
+      "model": null,
+      "attempts": 0,
+      "latency_seconds": 0.005297199997585267
+    }
+  },
+  {
+    "demo": "E",
+    "request": {
+      "question": "What experiment should run next?",
+      "scenario": "base",
+      "mode": "deterministic"
+    },
+    "http_status": 200,
+    "response": {
+      "schema_version": 1,
+      "answer": "design \u2014 Pilot control: 4,129 customers.\n\ndesign \u2014 Pilot treatment: 4,129 customers.\n\ndesign \u2014 Pilot total: 8,258 customers.\n\ndesign \u2014 Pilot p0: 60.00%.\n\ndesign \u2014 Pilot mde_pp: 3.00 percentage points.\n\ndesign \u2014 Pilot alpha: 5.00%.\n\ndesign \u2014 Pilot target_power: 80.00%.\n\ndesign \u2014 Pilot treatment_control_ratio: 1.00 treatment/control.\n\nRandomize offers within the frozen targeted population and analyze intention-to-treat retention. This estimates the offer effect within that group, not whole-policy superiority or financial-estimand power. Additional eligible recruitment is needed; agree guardrails and analysis before launch.\n\nAll customers are synthetic and all economics are illustrative. No real campaign or profit has been demonstrated.\n\nIntervals are pointwise and unadjusted; they condition on the fitted rules and assumed economics and exclude training and population-shift uncertainty.",
+      "question_category": "pilot",
+      "scenario": "base",
+      "evidence_references": [
+        {
+          "reference": "pilot.control",
+          "artifact": "stage3-metrics-v1",
+          "artifact_sha256": "a20186b0c8974ef525dc76f8ba73792a8f049a802bf07b6f92300214503c033e",
+          "field_path": "pilot.control",
+          "scenario": null,
+          "value": 4129,
+          "units": "customers",
+          "category": "pilot_design",
+          "label": "Pilot control"
+        },
+        {
+          "reference": "pilot.treatment",
+          "artifact": "stage3-metrics-v1",
+          "artifact_sha256": "a20186b0c8974ef525dc76f8ba73792a8f049a802bf07b6f92300214503c033e",
+          "field_path": "pilot.treatment",
+          "scenario": null,
+          "value": 4129,
+          "units": "customers",
+          "category": "pilot_design",
+          "label": "Pilot treatment"
+        },
+        {
+          "reference": "pilot.total",
+          "artifact": "stage3-metrics-v1",
+          "artifact_sha256": "a20186b0c8974ef525dc76f8ba73792a8f049a802bf07b6f92300214503c033e",
+          "field_path": "pilot.total",
+          "scenario": null,
+          "value": 8258,
+          "units": "customers",
+          "category": "pilot_design",
+          "label": "Pilot total"
+        },
+        {
+          "reference": "pilot.p0",
+          "artifact": "stage3-metrics-v1",
+          "artifact_sha256": "a20186b0c8974ef525dc76f8ba73792a8f049a802bf07b6f92300214503c033e",
+          "field_path": "pilot.p0",
+          "scenario": null,
+          "value": 0.6,
+          "units": "probability",
+          "category": "pilot_design",
+          "label": "Pilot p0"
+        },
+        {
+          "reference": "pilot.mde_pp",
+          "artifact": "stage3-metrics-v1",
+          "artifact_sha256": "a20186b0c8974ef525dc76f8ba73792a8f049a802bf07b6f92300214503c033e",
+          "field_path": "pilot.mde_pp",
+          "scenario": null,
+          "value": 3.0000000000000027,
+          "units": "percentage_points",
+          "category": "pilot_design",
+          "label": "Pilot mde_pp"
+        },
+        {
+          "reference": "pilot.alpha",
+          "artifact": "stage3-metrics-v1",
+          "artifact_sha256": "a20186b0c8974ef525dc76f8ba73792a8f049a802bf07b6f92300214503c033e",
+          "field_path": "pilot.alpha",
+          "scenario": null,
+          "value": 0.05,
+          "units": "probability",
+          "category": "pilot_design",
+          "label": "Pilot alpha"
+        },
+        {
+          "reference": "pilot.target_power",
+          "artifact": "stage3-metrics-v1",
+          "artifact_sha256": "a20186b0c8974ef525dc76f8ba73792a8f049a802bf07b6f92300214503c033e",
+          "field_path": "pilot.target_power",
+          "scenario": null,
+          "value": 0.8,
+          "units": "probability",
+          "category": "pilot_design",
+          "label": "Pilot target_power"
+        },
+        {
+          "reference": "pilot.treatment_control_ratio",
+          "artifact": "stage3-metrics-v1",
+          "artifact_sha256": "a20186b0c8974ef525dc76f8ba73792a8f049a802bf07b6f92300214503c033e",
+          "field_path": "pilot.treatment_control_ratio",
+          "scenario": null,
+          "value": 1.0,
+          "units": "ratio",
+          "category": "pilot_design",
+          "label": "Pilot treatment_control_ratio"
+        }
+      ],
+      "claim_ids": [
+        "control",
+        "treatment",
+        "total",
+        "p0",
+        "mde_pp",
+        "alpha",
+        "target_power",
+        "treatment_control_ratio",
+        "pilot_scope"
+      ],
+      "limitations": [
+        "All customers are synthetic and all economics are illustrative. No real campaign or profit has been demonstrated.",
+        "Intervals are pointwise and unadjusted; they condition on the fitted rules and assumed economics and exclude training and population-shift uncertainty.",
+        "This is constrained claim composition, not unrestricted model-authored analysis."
+      ],
+      "confidence_or_evidence_status": "validated_saved_evidence",
+      "requires_human_review": true,
+      "supported": true,
+      "synthetic_data": true,
+      "illustrative_economics": true,
+      "execution_mode": "deterministic",
+      "model": null,
+      "attempts": 0,
+      "latency_seconds": 0.004537400032859296
+    }
+  }
+]
