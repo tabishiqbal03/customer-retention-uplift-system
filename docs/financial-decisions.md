@@ -166,6 +166,7 @@ never overwritten. Defaults produce 10,000 fresh customers on the 8GB machine wi
 Parquet writer. No full transaction history is collected to Python. Only aggregate reports/figures
 are committed; the generated cohort, models, customer masks and scores stay ignored. The report
 contains exact protocol, generation validation, versions, timing, scenarios, paired estimates,
-planning and pilot simulation. A future governed LLM may explain these stable schema-versioned
-fields with their caveats; it must not recalculate money, choose customers or invent evidence.
-No LLM service, dashboard, API or deployment is implemented in Stage 3.
+planning and pilot simulation. The merged [Stage 4 assistant](assistant.md) explains these
+schema-versioned fields with their caveats. It cannot recalculate money or choose customers.
+Its optional local model selects approved explanations; application code renders all facts.
+Stage 3 itself remains independent of the assistant service.

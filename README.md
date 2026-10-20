@@ -23,6 +23,10 @@ flowchart LR
   I --> J[FastAPI / local UI / human review]
 ```
 
+[Final independent portfolio audit](reports/final-portfolio-audit.md) reviews all four merged stages,
+scientific limitations, verification and role-specific positioning. Stage completion reports preserve
+their original delivery-time status and measurements.
+
 ## What the evidence says
 
 - **25,000 customers and 1,280,055 transactions** were generated and validated for Stage 2;
@@ -55,7 +59,7 @@ claimed. Original raw results remain unchanged in `reports/stage4`.
 ```bat
 git clone https://github.com/tabishiqbal03/customer-retention-uplift-system.git
 cd customer-retention-uplift-system
-git checkout feature/stage-4-governed-ai-assistant
+git checkout main
 py -3.14 -m venv .venv
 .venv\Scripts\activate
 python -m pip install -e ".[dev]"
@@ -64,8 +68,8 @@ python -m retention_uplift.assistant.cli serve
 
 Open **http://127.0.0.1:8000**. Deterministic demonstration is the default. Startup reads the
 committed aggregate report; it does not import Spark, train models or regenerate data.
-The branch command applies while Stage 4 is awaiting review. Installation is from a repository
-checkout (`-e`); the aggregate report is not bundled as standalone wheel package data.
+Java and Ollama are unnecessary for deterministic serving; installation still includes the full
+project dependency stack. Installation is from a repository checkout (`-e`); the aggregate report is not bundled as standalone wheel package data.
 
 For real local inference, run `ollama list` and verify `qwen2.5:3b` is installed, then select
 **Local Ollama** in the UI. No model download is automatic. The tested machine has about 8 GB RAM;

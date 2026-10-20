@@ -50,12 +50,15 @@ Additional recruitment and prespecified guardrails would be needed.
 
 **Why constrain the LLM?** Financial arithmetic and recommendations should not depend on plausible
 prose. Claim IDs plus authoritative rendering give a small, testable trust boundary. The model has
-no shell, file or targeting tools. The trade-off is limited language flexibility: it orders approved
-claims and optionally adds a review reminder, rather than generating unrestricted analysis.
+no shell, file or targeting tools. The trade-off is limited language flexibility: it selects zero to two optional
+conceptual explanations. Application code supplies mandatory facts and review language. Empty
+selection is safe but contributes no additional model explanation; errors require the user to
+choose deterministic mode explicitly.
 
 **How I evaluated it:** 44 fixed development cases cover supported facts, scenario comparisons,
-uncertainty, pilot design and 16 unsupported/adversarial inputs. The same installed qwen2.5:3b model
-is exercised with basic and evidence-bound prompts. Per-case raw plans, retries, failures and timings
+uncertainty, pilot design and 16 unsupported/adversarial inputs. The historical qwen2.5:3b basic prompt passed 11/28 supported questions; the bound prompt passed
+2/5 completed questions before stopping, so the 44-case comparison was not completed. The current
+optional-only contract has no supported live measurements because the memory gate stopped it. Per-case raw plans, retries, failures and timings
 are saved. Refusals by the deterministic scope guard are excluded from LLM success denominators.
 See the [completion report](../reports/stage-4-completion.md) for measured results; this is not a
 held-out benchmark of free-form hallucination or a claim of universal prompt-injection resistance.

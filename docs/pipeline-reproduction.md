@@ -1,6 +1,6 @@
 # Customer Retention Uplift & Decision Intelligence System
 
-**Stage 3: illustrative financial targeting, uncertainty and experimental design.**
+**Full pipeline reproduction for the four merged stages.**
 
 Which fintech customers should receive a retention offer so that it changes behaviour?
 A churn score estimates risk; uplift estimates the change caused by an intervention.
@@ -25,7 +25,7 @@ directory if Java is not already configured. No unofficial Hadoop binaries are r
 ```bat
 git clone https://github.com/tabishiqbal03/customer-retention-uplift-system.git
 cd customer-retention-uplift-system
-git checkout feature/stage-4-governed-ai-assistant
+git checkout main
 py -3.14 -m venv .venv
 .venv\Scripts\activate
 python -m pip install -e ".[dev]"
@@ -37,18 +37,19 @@ python -m retention_uplift.cli generate --config configs/smoke.toml --output dat
 python -m retention_uplift.cli validate --input data/smoke
 ```
 
-The checkout command applies while Stage 4 awaits review. With an existing environment, activate
-it and start at installation. On POSIX use `python3 -m venv .venv` and `source .venv/bin/activate`;
+With an existing environment, activate it and start at installation. On POSIX use `python3 -m venv .venv` and `source .venv/bin/activate`;
 the Python commands are identical. `retention-data` is an equivalent installed CLI entry point.
 
-Standard profile (100,000 customers):
+Optional, unverified scale profile (100,000 customers): this exhausted Java heap on the tested
+8 GB machine. It is not required for reproduction; use the verified 25,000-customer workflow below.
 
 ```bat
 python -m retention_uplift.cli generate --config configs/standard.toml --output data/standard
 python -m retention_uplift.cli validate --input data/standard
 ```
 
-Each command generates all six tables and validates Parquet readback. `validation.json` records
+The `generate` command creates all six tables and validates Parquet readback; `validate` checks
+an existing saved dataset. `validation.json` records
 counts, experiment diagnostics, versions, schemas, configuration and measured run information.
 `_SUCCESS` appears only after checks pass. Existing output directories are never overwritten;
 use `data/smoke-repeat` for a new run. Failed runs can leave partial output without `_SUCCESS`.
