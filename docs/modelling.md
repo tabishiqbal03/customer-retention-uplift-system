@@ -147,9 +147,10 @@ A minimal Stage 1 cache-lifetime correction releases generated tables before dis
 an integration regression assertion checks that release. This does not establish that the
 100,000 profile now fits: the completion report records only successfully executed scales.
 
-No profit optimization, monetary budget, incentive assumptions, power planning, LLM,
-dashboard, API, Docker or deployment is implemented. Stage 3 requires separately approved
-cost/value assumptions and experiment planning; Stage 2 does not establish commercial value.
+Stage 2 alone does not implement financial optimization or an explanation service. The merged
+[Stage 3](financial-decisions.md) adds explicit illustrative cost/value assumptions and pilot
+planning; [Stage 4](assistant.md) adds the local explanation API/UI. These extensions do not
+establish commercial value or production readiness.
 
 References: [scikit-learn leakage guidance](https://scikit-learn.org/stable/common_pitfalls),
 [HistGradientBoostingClassifier](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.HistGradientBoostingClassifier.html).
