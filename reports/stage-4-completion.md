@@ -187,8 +187,11 @@ The service is local-only demonstration software with trusted operators and no p
 ## L. GitHub delivery
 
 Branch: `feature/stage-4-governed-ai-assistant`, based on merged Stage 3. `main` is untouched.
-The final delivery record and pull request provide the exact commit, CI outcome and open/unmerged
-status. No merge is authorized or performed by this stage.
+Implementation commit: `4c4c93dabe42c35a2640a6b5324a4415490bf556`.
+Pull request: [#4 — governed local explanations](https://github.com/tabishiqbal03/customer-retention-uplift-system/pull/4),
+verified **open and unmerged** on 20 October 2026. The final delivery record reports the final
+head SHA and CI outcome after this documentation update. No merge is authorized or performed.
+CI uses mocked Ollama; its passing tests do not complete the partial live-model benchmark.
 
 ## M. Final project readiness
 

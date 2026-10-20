@@ -10,7 +10,8 @@ assumptions. Use a repository checkout and an editable install, as shown in the 
 planning constraints, totals and recommendation consistency. Unknown technical report fields are
 ignored by an explicit projection, not forwarded. The artifact's SHA-256 accompanies every fact.
 This digest provides traceability, not a cryptographic signature or protection against a malicious
-operator replacing the report and application together.
+operator replacing the report and application together. Byte hashes describe the exact local
+checkout, including line endings; changing that format requires a new evaluation directory.
 
 Approved fields include budget/capacity, scenario assumptions, planning counts/spend/predicted net,
 observed IPW estimates and pointwise intervals, paired comparisons, recommendation labels and pilot
