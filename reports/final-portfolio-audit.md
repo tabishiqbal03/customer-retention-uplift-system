@@ -107,7 +107,7 @@ These values were reread from [metrics.json](stage3/metrics.json). Base profit-m
 
 The engine determines mandatory facts and caveats; Ollama may select zero to two approved optional conceptual explanations. Strict ID validation rejects unknown, duplicate, malformed or excessive choices, and authoritative rendering controls numbers. An empty selection is safe but provides no additional model explanation. Model errors are returned explicitly; selecting deterministic mode is manual. There is no automatic successful LLM-to-deterministic fallback. This is controlled catalogue composition; it does not demonstrate general retrieval-augmented synthesis, autonomous reasoning, agent tool use or trained language modelling.
 
-The HTTP adapter uses loopback only, disables environment proxies and redirects, checks a locally installed non-remote model, bounds response bytes, limits output/context and uses a per-process inference lock. Invalid plans get one constrained retry; transport errors do not. The 60-second HTTP timeout is not a strict end-to-end deadline. The benchmark's 100-second subprocess watchdog does not guarantee cancellation inside Ollama. Its memory gating applies to the benchmark, not every API request.
+The HTTP adapter uses loopback only, disables environment proxies and redirects, checks a locally installed non-remote model, bounds response bytes and limits output/context. The engine uses a per-process inference lock. Invalid plans get one constrained retry; transport errors do not. The 60-second HTTP timeout is not a strict end-to-end deadline. The benchmark's 100-second subprocess watchdog does not guarantee cancellation inside Ollama. Its memory gating applies to the benchmark, not every API request.
 
 API endpoints are health, report summary, explanation, evidence, historical evaluation summary and UI. Requests use strict fields and approved scenario names; the ASGI body cap measures actual chunks. Startup does not train/import Spark or probe inference. Health honestly says Ollama is unprobed. UI text rendering uses `textContent`, exposes modes and errors, and labels historical metrics. The finite English router can refuse legitimate paraphrases or match unintended wording; semantic correctness is bounded by the catalogue and routing, not proven by keyword guards.
 
@@ -247,4 +247,10 @@ Publish the bounded project now rather than inventing business impact or delayin
 
 ## Q. GitHub delivery
 
-Audit branch: `audit/final-portfolio-readiness`, based on the verified main commit above. Delivery is documentation-only; the pull request remains unmerged for user review. The PR commit list is the canonical final revision; a commit cannot contain its own hash. Delivery links and checked CI status follow after remote verification.
+Audit branch: `audit/final-portfolio-readiness`, based on the verified main commit above. Delivery is documentation-only; the pull request remains unmerged for user review. The PR commit list is the canonical final revision; a commit cannot contain its own hash. 
+
+- [Pull request #5](https://github.com/tabishiqbal03/customer-retention-uplift-system/pull/5): open for review; do not merge automatically.
+- [Audit content commit f9890b7](https://github.com/tabishiqbal03/customer-retention-uplift-system/commit/f9890b7bbf9d6e86e77d661e555e56a529daeda2); [canonical final commit list](https://github.com/tabishiqbal03/customer-retention-uplift-system/pull/5/commits).
+- [Initial audit CI run](https://github.com/tabishiqbal03/customer-retention-uplift-system/actions/runs/39452154064); [final revision checks](https://github.com/tabishiqbal03/customer-retention-uplift-system/pull/5/checks). CI is pending at this documentation commit; the delivered report/chat records its subsequently verified result.
+- `git diff --check` and a local-link scan of all eight changed Markdown files passed. A comparison with baseline confirmed no executable source/tests or historical report artifacts changed.
+
