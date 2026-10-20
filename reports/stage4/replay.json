@@ -1,0 +1,10 @@
+{
+  "status": "passed",
+  "replayed_saved_responses": {
+    "deterministic": 44,
+    "basic": 27,
+    "bound": 2
+  },
+  "report_sha256": "a20186b0c8974ef525dc76f8ba73792a8f049a802bf07b6f92300214503c033e",
+  "note": "All delivered saved responses validate against final source; this does not create new model executions or fill uncompleted cases."
+}

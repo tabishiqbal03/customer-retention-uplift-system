@@ -1,0 +1,29 @@
+{
+  "basic": {
+    "generation_attempts": 41,
+    "raw_json_valid_attempts": 33,
+    "raw_plan_schema_valid_attempts": 33,
+    "rendered_model_responses": 11,
+    "validated_rendered_model_responses": 11,
+    "validated_rendered_claims": 64,
+    "validated_field_references": 54,
+    "terminal_error_counts": {
+      "invalid_model_plan": 9,
+      "model_timeout": 8
+    },
+    "raw_output_interpretation": "Schema validity does not imply required-claim completeness."
+  },
+  "bound": {
+    "generation_attempts": 8,
+    "raw_json_valid_attempts": 5,
+    "raw_plan_schema_valid_attempts": 5,
+    "rendered_model_responses": 2,
+    "validated_rendered_model_responses": 2,
+    "validated_rendered_claims": 14,
+    "validated_field_references": 14,
+    "terminal_error_counts": {
+      "model_timeout": 3
+    },
+    "raw_output_interpretation": "Schema validity does not imply required-claim completeness."
+  }
+}

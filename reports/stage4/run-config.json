@@ -1,0 +1,16 @@
+{
+  "modes": [
+    "deterministic",
+    "basic",
+    "bound"
+  ],
+  "model": "qwen2.5:3b",
+  "options": {
+    "temperature": 0,
+    "seed": 20261020,
+    "num_ctx": 4096,
+    "num_predict": 256,
+    "num_thread": 2
+  },
+  "provenance": "Recovered from the completed basic strategy configuration; this run used identical model options for both live strategies."
+}

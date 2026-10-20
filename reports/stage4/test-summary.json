@@ -1,0 +1,23 @@
+{
+  "passed": 185,
+  "failed": 0,
+  "skipped": 0,
+  "seconds": 376.36,
+  "original_tests": 88,
+  "new_tests": 99,
+  "assistant_passed": 99,
+  "assistant_seconds": 8.21,
+  "assistant_failed": 0,
+  "assistant_skipped": 0,
+  "distinct_tests": 187,
+  "full_run_command": "python -m pytest -q --basetemp=data/test-stage4-full --junitxml=../stage4-tests.xml",
+  "assistant_run_command": "python -m pytest tests/test_assistant.py -q --basetemp=data/test-stage4-final-assistant --junitxml=../stage4-assistant-tests.xml",
+  "note": "The full local run collected 185 before two recovery tests were added. The final 99-test assistant run includes those two. Final PR CI runs all 187 together.",
+  "warnings": [
+    "Starlette TestClient HTTPX deprecation warning"
+  ],
+  "lint": "passed",
+  "format": "passed",
+  "pip_check": "passed",
+  "git_diff_check": "passed"
+}

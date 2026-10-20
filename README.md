@@ -1,172 +1,98 @@
 # Customer Retention Uplift & Decision Intelligence System
 
-**Stage 3: illustrative financial targeting, uncertainty and experimental design.**
+A synthetic fintech experiment that connects **causal uplift, economic decisions and governed AI explanations**.
+Churn predicts who may leave. Uplift asks whose behaviour an offer might change. This project
+then asks whether that change covers cost, how uncertain the evidence is, and how to explain it.
 
-Which fintech customers should receive a retention offer so that it changes behaviour?
-A churn score estimates risk; uplift estimates the change caused by an intervention.
-A high-risk customer may ignore an offer, while a moderately at-risk customer may respond.
-Stage 2 investigates this distinction with this reproducible randomized dataset.
+**All customers are synthetic; all economics are illustrative. No real campaign, commercial ROI
+or production deployment has been demonstrated.**
 
-Stage 1 generates customers, historical transactions, randomized assignments, observed outcomes
-and hidden expected effects. It builds pre-offer features and validates their integrity.
-Stage 2 adds control-only churn prediction, constant/T/S uplift estimators and equal-outreach
-policy evaluation. Stage 3 adds financial decisions and pilot planning; AI services remain future work.
+```mermaid
+flowchart LR
+  A[PySpark synthetic history] --> B[Pre-offer features]
+  R[Randomized offers and outcomes] --> C[Control-only churn and T/S uplift]
+  B --> C
+  C --> D[Frozen targeting under budget and capacity]
+  R --> E[Fresh simulated cohort / IPW / paired bootstrap]
+  D --> E
+  E --> F[Saved evidence and pilot design]
+  F --> G[Typed allowlisted retrieval]
+  Q[Stakeholder question] --> G
+  G --> H[Local Ollama claim plan OR deterministic demonstration]
+  H --> I[Validation and authoritative rendering]
+  I --> J[FastAPI / local UI / human review]
+```
 
-All customer and transaction data are synthetic. Behaviour and offer responsiveness are designed
-assumptions, the experiment is simulated, and known treatment effects are synthetic ground truth.
-No real-world retention improvement, financial return, commercial ROI or fintech deployment has
-been demonstrated. Real-world generalisation remains unverified.
+## What the evidence says
 
-## Quick start — Windows CMD
+- **25,000 customers and 1,280,055 transactions** were generated and validated for Stage 2;
+  historical-only features and customer-level splits protect against leakage.
+- Validation selected a T-learner. Stage 3 evaluated its frozen rules on **10,000 new synthetic
+  customers**, with seven prespecified financial scenarios and paired bootstrap comparisons.
+- Base planning selects **1,500 customers**, spends **£3,000** and predicts **£5,187.17 net**.
+  The randomized observed-outcome net estimate is **£3,800**, with a pointwise 95% interval of
+  **[−£698.15, £8,308.20]**. The recommendation is **inconclusive: no rollout**.
+- The assistant cites exact report fields and preserves that recommendation. Ollama selects and
+  orders approved claim IDs; application code renders every number and mandatory caveat.
+  It is deliberately constrained composition, not unrestricted AI analysis.
 
-The tested stack is Python 3.14.3, Java 25.0.2 and PySpark 4.2.0. Set `JAVA_HOME` to your actual JDK
-directory if Java is not already configured. No unofficial Hadoop binaries are required.
+See [Stage 4 execution results](reports/stage-4-completion.md) for actual local-model performance,
+failures, latency and test totals. [Machine-readable evaluation](reports/stage4/evaluation-summary.json)
+separates model calls from scope-guard refusals; deterministic answers are never counted as LLM successes.
+
+**Current LLM limitation:** the basic prompt passed 11/28 supported questions. The bound prompt
+passed 2/5 completed questions before the run was stopped under severe memory pressure; its full
+benchmark is incomplete. The deterministic suite passed all 44 cases. No prompt superiority or
+production reliability is claimed.
+
+## Run the local explanation demo — Windows CMD
 
 ```bat
 git clone https://github.com/tabishiqbal03/customer-retention-uplift-system.git
 cd customer-retention-uplift-system
-git checkout feature/stage-3-profit-optimization
+git checkout feature/stage-4-governed-ai-assistant
 py -3.14 -m venv .venv
 .venv\Scripts\activate
 python -m pip install -e ".[dev]"
+python -m retention_uplift.assistant.cli serve
+```
+
+Open **http://127.0.0.1:8000**. Deterministic demonstration is the default. Startup reads the
+committed aggregate report; it does not import Spark, train models or regenerate data.
+The branch command applies while Stage 4 is awaiting review. Installation is from a repository
+checkout (`-e`); the aggregate report is not bundled as standalone wheel package data.
+
+For real local inference, run `ollama list` and verify `qwen2.5:3b` is installed, then select
+**Local Ollama** in the UI. No model download is automatic. The tested machine has about 8 GB RAM;
+see [setup, five demonstrations and troubleshooting](docs/assistant.md).
+
+```bat
 python -m ruff check .
 python -m ruff format --check .
-python -m pytest -q -m "not integration" --basetemp=data/test-unit-tmp
-python -m pytest -q -m integration --basetemp=data/test-spark-tmp
-python -m retention_uplift.cli generate --config configs/smoke.toml --output data/smoke
-python -m retention_uplift.cli validate --input data/smoke
+python -m pytest -q --basetemp=data/test-full-tmp
+python -m retention_uplift.assistant.cli evaluate --output data/assistant-eval
 ```
 
-The checkout command applies while Stage 3 awaits review. With an existing environment, activate
-it and start at installation. On POSIX use `python3 -m venv .venv` and `source .venv/bin/activate`;
-the Python commands are identical. `retention-data` is an equivalent installed CLI entry point.
+The full tests need Java for real Spark integration. The assistant tests alone use mocked Ollama:
+`python -m pytest tests/test_assistant.py -q --basetemp=data/test-assistant-tmp`.
+Evaluation uses real Ollama unless `--modes deterministic` is supplied. Always choose a new output
+directory. Pytest clears its basetemp; never point it at data you need to keep.
 
-Standard profile (100,000 customers):
+## Methods, evidence and boundaries
 
-```bat
-python -m retention_uplift.cli generate --config configs/standard.toml --output data/standard
-python -m retention_uplift.cli validate --input data/standard
-```
+| Area | Guide | Executed evidence |
+|---|---|---|
+| Synthetic data and leakage prevention | [Simulation](docs/simulation.md), [data dictionary](docs/data-dictionary.md) | [Stage 1](reports/stage-1-completion.md) |
+| Churn, uplift and held-out policy value | [Modelling](docs/modelling.md) | [Stage 2](reports/stage-2-completion.md) |
+| Economics, uncertainty and pilot planning | [Financial decisions](docs/financial-decisions.md) | [Stage 3](reports/stage-3-completion.md), [business brief](reports/stage3/business-summary.md) |
+| Governed local explanation service | [Assistant](docs/assistant.md), [evaluation cases](evals/stage4-cases.json) | [Stage 4](reports/stage-4-completion.md) |
 
-Each command generates all six tables and validates Parquet readback. `validation.json` records
-counts, experiment diagnostics, versions, schemas, configuration and measured run information.
-`_SUCCESS` appears only after checks pass. Existing output directories are never overwritten;
-use `data/smoke-repeat` for a new run. Failed runs can leave partial output without `_SUCCESS`.
-Pytest cleans its own `--basetemp`: never point that flag at data you want to preserve.
+[Full pipeline reproduction](docs/pipeline-reproduction.md) · [Operations](docs/operations.md) ·
+[Interview guide](docs/interview-summary.md) · [CV wording](docs/cv-summary.md)
 
-See [execution evidence](reports/stage-1-completion.md), [scientific design](docs/simulation.md),
-[data dictionary](docs/data-dictionary.md) and [operations](docs/operations.md).
-
-## Timeline and experiment
-
-| Stage | Default dates |
-|---|---|
-| Historical observation | 1 January–31 December 2025, inclusive |
-| Feature cutoff | End of 31 December 2025 |
-| Randomized offer | 1 January 2026 |
-| Outcome window | 2–31 January 2026, inclusive |
-
-The daily-resolution design excludes assignment-day activity to avoid intraday ambiguity.
-History is exactly 12 calendar months; dates, outcome length, size, seed and propensity are
-configurable. Each customer gets one Bernoulli(0.5) assignment using a separate random stream.
-
-The simulator defines `p0`, `p1` and `tau = p1 - p0`. Only the assigned arm's observed retention
-is sampled. Retained means at least one qualifying activity day in the outcome window; a hurdle
-simulation generates occurrence and a positive day count. Both binary counterfactuals are never
-presented as observed labels. Oracle probabilities and effects live only in `evaluation_only/`.
-
-Six overlapping latent archetypes generate stable, drifting, low-engagement, multi-product,
-price-sensitive and message-averse behaviour. They influence noisy historical usage and response,
-producing positive, near-zero and negative effects. No archetype label enters model features.
-Latent variation means later models target effects conditional on observable history, not exact
-recovery of each full-state oracle effect.
-
-## Architecture
-
-```text
-configs/                       smoke and standard TOML profiles
-src/retention_uplift/
-  config.py                    validated experiment and mechanism settings
-  randomness.py                seed/domain/stable-ID draws
-  simulator.py                 latent population, transactions, experiment and truth
-  features.py                  historical-only features and predictor allowlist
-  validation.py                integrity and randomized-experiment diagnostics
-  storage.py                   Parquet persistence and schema readback
-  pipeline.py / cli.py         reproducible orchestration
-tests/                         unit, leakage and real Spark integration checks
-docs/                          assumptions, data dictionary and operations
-reports/                       measured evidence; no bulk datasets
-```
-
-Spark creates a distributed customer range, expands customer-month counts into transactions,
-and performs temporal filters, joins, aggregations, uniqueness checks and experiment diagnostics.
-No pandas, Python UDF, driver-sized transaction list or `toPandas()` is used. The Windows portable
-sink streams bounded batches from Spark to PyArrow Parquet; Spark reads them back. This avoids
-the Hadoop permission operation that fails without `winutils` on the tested machine. Elsewhere
-`--writer auto` uses Spark's distributed writer. Both writers can be explicitly selected.
-
-`build_features(customers, transactions, config)` accepts historical sources only, selects allowed
-columns, enforces both date boundaries and validates customer uniqueness/snapshot dates. A left
-join retains zero-transaction customers. `model_inputs(features)` returns 22 numeric predictors,
-excluding ID, cutoff metadata, treatment, outcomes and oracle truth. Tests inject future events
-and forbidden columns and assert unchanged features. Raw validation separately rejects future
-events. Physical separation is an interface convention, not a security access-control boundary.
-
-Validation checks keys, coverage, foreign keys, nulls/nonfinite values, dates, binary outcomes,
-propensities and probabilities. Allocation/covariate balance, true ATE, effect-sign shares,
-observed arm rates and a descriptive 95% interval are reported. Sampling variation is expected;
-observed effects need not exactly equal oracle effects. Statistical warnings remain visible and
-do not cause rerandomization or seed selection.
-
-## Stage 2 workflow
-
-```bat
-python -m retention_uplift.cli generate --config configs/medium.toml --output data/medium
-python -m retention_uplift.cli run-stage2 --input data/medium --output data/stage2-medium
-```
-
-Use `configs/evaluation.toml` for 25,000 customers, or `configs/standard.toml` for the
-100,000-customer profile, with new output paths. The 100,000 attempt exhausted the Java heap
-on this machine and is not a verified modelling benchmark. The workflow creates
-60/20/20 customer splits, validates seven modest candidates, freezes model/policy selection,
-then evaluates untouched customers. Training never reads oracle truth. Positive uplift targeting,
-random selection and highest untreated churn risk receive identical actual outreach counts.
-Observed incremental retention uses known-propensity weighting with paired bootstrap intervals.
-No model is assumed to win. Oracle diagnostics include inaccessible latent variation and are
-not real-world causal validation. See [the full protocol](docs/modelling.md) and the
-[Stage 2 completion report](reports/stage-2-completion.md) for measured findings and limitations.
-
-New modules: `modelling_data.py` (bounded Spark bridge/splits), `models.py` (training/selection),
-`policy.py` (allocation/IPW/bootstrap), `evaluation.py` (final diagnostics), and
-`stage2.py` / `stage2_reporting.py` (artifacts/figures). Local models, manifests and per-customer
-scores live under ignored `data/`; only aggregate evidence is committed. Stage 3 extends these interfaces as described below.
-
-## Stage 3 workflow
-
-```bat
-python -m retention_uplift.cli generate --config configs/evaluation.toml --output data/evaluation
-python -m retention_uplift.cli run-stage2 --input data/evaluation --output data/stage2-evaluation
-python -m retention_uplift.cli run-stage3 --models data/stage2-evaluation --training-source data/evaluation --output data/stage3-final
-```
-
-Reuse existing successful Stage 1/2 outputs instead of overwriting them. Stage 3 freezes the selected
-T-learner and seven explicit economic scenarios before generating 10,000 new customers with a
-different seed and disjoint IDs. If a reproduced Stage 2 selects a different learner, the Stage 3
-protocol rejects it rather than silently reselecting. Use trusted local model files only.
-
-The base scenario assumes GBP40 contribution per incremental retained customer over 30 days,
-GBP2 cost per selected customer, GBP3000 maximum spend and 2500 maximum contacts. These are
-illustrative assumptions, not industry measurements. Profit selection maximizes predicted net
-value under uniform costs. All comparators share a positive-net screen and common maximum limits.
-Uplift and profit rankings coincide at fixed value; heterogeneous values can separate them.
-
-Outputs: protocol/model hashes, frozen local policy decisions, aggregate predicted and randomized
-observed monetary estimates, paired bootstrap intervals, sensitivity, four figures and a business
-brief. No real CLV, offer cost, campaign, retention gain or profitability improvement is established.
-Previously examined Stage 2 results are not fresh confirmation. The fresh cohort is a new simulated
-sample from the same mechanism, not real or temporal validation. A hypothetical targeted pilot
-estimates an offer effect within that population, not whole-policy superiority or profit.
-
-Read [financial methodology and pilot design](docs/financial-decisions.md),
-[completion evidence](reports/stage-3-completion.md) and the
-[business brief](reports/stage3/business-summary.md). No Stage 4 services are implemented.
+The simulator does not establish real-world generalization. Intervals are pointwise and conditional
+on fitted rules and assumed economics; they omit training and population-shift uncertainty.
+The assistant uses finite English query routing and a reviewed claim catalogue; it can refuse valid
+paraphrases and cannot establish arbitrary semantic correctness. Its local API has no authentication,
+TLS or production controls. Human review, genuine randomized validation, privacy governance and
+business-approved costs would be required before any operational use.
