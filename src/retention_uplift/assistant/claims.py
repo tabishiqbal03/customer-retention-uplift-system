@@ -281,4 +281,97 @@ def prepare(store, request):
             "A human must review the saved evidence and assumptions before acting.",
             mandatory=False,
         )
-    return Context(category, claims, required, facts, request.scenario)
+    context = Context(category, claims, required, facts, request.scenario)
+    claims.update(optional_catalogue(context))
+    return context
+
+
+def optional_catalogue(context):
+    """Two distinct explanatory lenses, additional to the mandatory saved facts."""
+    lenses = {
+        "campaign": (
+            (
+                "Treat the recommendation as an evidence gate: review uncertainty before "
+                "committing campaign resources."
+            ),
+            (
+                "A planned campaign describes who could be contacted; it does not establish "
+                "that contacting them creates value."
+            ),
+        ),
+        "financial": (
+            (
+                "Planning estimates help compare allocations; observed-outcome estimates "
+                "evaluate the frozen rule using different evidence."
+            ),
+            (
+                "Economic assumptions translate retention into money, so changing those "
+                "assumptions can change the decision even when retention estimates stay "
+                "fixed."
+            ),
+        ),
+        "uncertainty": (
+            (
+                "A confidence interval describes estimation uncertainty under the stated "
+                "design; it is not a promise about the next campaign."
+            ),
+            (
+                "Decision confidence depends on the range of plausible effects, not merely "
+                "the sign of the point estimate."
+            ),
+        ),
+        "sensitivity": (
+            (
+                "Sensitivity comparisons test dependence on assumptions; they do not select a "
+                "new primary analysis after seeing favourable results."
+            ),
+            (
+                "Different costs can change both who qualifies and how many contacts fit the "
+                "constraints, so scenario differences need not scale proportionally."
+            ),
+        ),
+        "targeting": (
+            (
+                "A maximum is a ceiling, not a spending target: the positive-net screen can "
+                "bind before budget or capacity."
+            ),
+            (
+                "The selected count describes the frozen policy; identifying individual "
+                "recipients requires a separate approved operational process."
+            ),
+        ),
+        "pilot": (
+            (
+                "Precommitting the analysis prevents favourable outcomes from redefining what "
+                "the experiment was intended to test."
+            ),
+            (
+                "Power concerns the specified retention effect; it cannot be transferred "
+                "directly to a financial outcome with different variability."
+            ),
+        ),
+        "method": (
+            (
+                "Risk prediction and treatment response answer different questions: a "
+                "high-risk customer may still be unresponsive to an offer."
+            ),
+            (
+                "A fair policy comparison uses the same population and constraints, so "
+                "differences reflect the decision rule rather than unequal resources."
+            ),
+        ),
+        "deployment": (
+            (
+                "A demonstration validates software behaviour; operational adoption also "
+                "needs evidence that the assumptions transfer to the intended population."
+            ),
+            (
+                "Human review should connect the saved evidence to operational constraints "
+                "before any deployment decision."
+            ),
+        ),
+    }
+    return {
+        f"explain_{i}": Claim(id=f"explain_{i}", text=text, references=[])
+        for i, text in enumerate(lenses.get(context.category, ()), 1)
+    }

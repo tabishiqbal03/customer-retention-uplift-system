@@ -1,0 +1,14 @@
+{
+  "contract": "optional_v2",
+  "model": "qwen2.5:3b",
+  "options": {
+    "temperature": 0,
+    "seed": 20261020,
+    "num_ctx": 2048,
+    "num_predict": 64,
+    "num_thread": 2
+  },
+  "case_sha256": "287aaec6f98dd104316f3d639b5af0df189a9b44cd10e5e5ae021b90a1d97d44",
+  "report_sha256": "a20186b0c8974ef525dc76f8ba73792a8f049a802bf07b6f92300214503c033e",
+  "protocol_sha256": "632a32f8d7b6ebba8e955f594007d723c4979111cf1ad3de56fa249415c3ab16"
+}

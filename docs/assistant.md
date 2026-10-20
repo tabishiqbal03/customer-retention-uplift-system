@@ -24,13 +24,27 @@ Routing selects a small claim catalogue for a supported topic. Explicit `scenari
 routing is intentionally limited and may over-refuse or misunderstand unfamiliar wording. Use the
 UI examples and explicit selectors. It is not a general natural-language understanding benchmark.
 
-Ollama returns only `{"claim_ids":[...]}`. IDs must exist in that question's catalogue, be unique and
-include every required claim. It can reorder claims and select an optional human-review reminder.
-The renderer copies approved statements and formats numbers directly from validated facts, adds
-mandatory caveats, and checks the final response and references again. There is no free-form
-model-written numerical or recommendation text to leak through a regular-expression checker.
-This deliberately limits expressive flexibility: the model is a constrained composer, not an analyst.
-Catalogue wording and scientific interpretations still require human review.
+The current local adapter returns only `{"optional_claim_ids":[...]}` with at most two
+unique IDs from a category-specific two-item catalogue. Application code selects every mandatory
+claim before inference; the model cannot omit it. Additional explanations describe conceptual
+implications, contain no financial numbers, and are explicitly curated text rather than retrieved
+numeric evidence. The model selects relevant lenses; application code renders their text.
+An empty valid selection returns mandatory facts with `contribution: "empty_selection"` and earns
+no meaningful-model-contribution credit. Invalid plans receive one repair attempt, then fail closed.
+
+`model_selected_claim_ids` and `contribution` are additive response fields; existing fields and
+request schema remain available. `contribution` is `none` for deterministic/guard responses,
+`optional_explanation` for a validated nonempty selection, and `legacy_plan` only for custom
+adapters using the previous protocol. The production Ollama adapter always uses optional_v2 and
+never accepts an old plan as a silent fallback. `claim_ids` still lists all rendered claims.
+Strict clients that reject new response fields must update. Schema version remains 1 for this
+additive change. The old ClaimPlan validator remains for final mandatory completeness checks and
+compatibility tests, not as the local model's output contract.
+
+The renderer formats numbers directly from validated facts, adds mandatory caveats, and checks
+exact text and references again. Catalogue wording and scientific interpretations still need human
+review. A nonempty selection measures constrained composition, not free-form reasoning or proven
+usefulness to a stakeholder. See the [frozen criteria](../evals/stage4-reliability-protocol.md).
 
 Responses contain `answer`, `question_category`, `scenario`, `evidence_references`, `claim_ids`,
 `limitations`, `confidence_or_evidence_status`, `requires_human_review`, `supported`,
@@ -97,9 +111,10 @@ before using `ollama pull qwen2.5:3b`. This repository never pulls a model. The 
 redistributed; the installed model reports the Qwen research license.
 
 Runtime: loopback `/api/tags` and `/api/chat`, no tools or remote-model support; temperature 0,
-seed 20261020, context 4096, prediction cap 256, two inference threads, keep-alive two minutes,
-60-second HTTP timeout per request, at most two generation attempts. A validation failure permits
-one retry; transport failures do not. HTTPX timeouts are per I/O phase, not a hard whole-process
+seed 20261020, context 2048, prediction cap 64, two inference threads, keep-alive 30 seconds,
+60-second HTTP timeout per I/O phase, at most two generation attempts. A validation failure permits
+one retry; transport failures do not. Valid local inventory is cached for 60 seconds;
+missing models still fail at generation. Generation logs capture token counts and stop reasons. HTTPX timeouts are per I/O phase, not a hard whole-process
 deadline. One inference request runs per application process; use a single server worker on 8 GB.
 Do not run Spark and LLM benchmarks simultaneously on this machine. Runtime caching and hardware
 affect timings; fixed seeds do not guarantee bitwise inference reproducibility.
@@ -113,17 +128,23 @@ The adapter follows [Ollama's API](https://github.com/ollama/ollama/blob/main/do
 ```bat
 python -m pytest tests/test_assistant.py -q --basetemp=data/test-assistant-tmp
 python -m retention_uplift.assistant.cli evaluate --output data/eval-deterministic --modes deterministic
-python -m retention_uplift.assistant.cli evaluate --output data/eval-live
+python -m retention_uplift.assistant.reliability --output data/eval-live-v2
 ```
 
-Output directories must be new. The fixed 44-case development suite was defined before the engine;
+The general `evaluate` command requires a new directory. The Windows `reliability` command
+resumes a frozen run without replacing completed rows. Repeat it with `--expand` only after the
+first five supported cases meet its expansion rule. It checks memory before each live request and
+uses a 100-second subprocess watchdog; these benchmark safeguards do not turn the ordinary
+API timeout into a hard wall-clock deadline. See the protocol for all abort thresholds.
+
+ The fixed 44-case development suite was defined before the engine;
 it has 28 supported questions and 16 unsupported/adversarial requests. Expected support, category,
 source fields and caveats are machine checked. It is not a held-out linguistic generalization set.
 Both live strategies use the same model, evidence, JSON schema, validation and retry bound. `basic`
-asks for relevant IDs; `bound` additionally directs inclusion, scope and trust handling. Thus this
+asks for optional explanatory IDs; `bound` additionally marks the question as untrusted data. Thus this
 compares prompt instructions inside a governed pipeline, not a raw chatbot against a governed one.
 
-The recorded run completed deterministic and basic strategies, but only five bound cases completed
+The **historical v1** recorded run completed deterministic and basic strategies, but only five bound cases completed
 before severe memory pressure (about 0.29 GiB free) and a 247.81-second failure led to stopping it.
 Basic passed 11/28 supported questions; bound passed 2/5 completed questions. These unequal totals
 are not a fair headline comparison. On their five common cases, both passed 2/5. This small,
@@ -134,7 +155,7 @@ may have been interrupted. Deterministic mode passed 44/44 and is the recommende
 An interrupted run can be summarized without invoking Ollama:
 
 ```bat
-python -m retention_uplift.assistant.cli summarize --input data/eval-live
+python -m retention_uplift.assistant.cli summarize --input data/historical-eval-live
 ```
 
 This rebuilds only the derived summary from saved JSONL rows and run configuration. It does not
@@ -177,3 +198,12 @@ The health endpoint validates report readiness, **not** Ollama readiness. It exp
 `not_probed`. Deterministic mode remains useful when the model fails, but must be chosen and is
 labelled separately. The tested FastAPI/Starlette combination emits a TestClient HTTPX deprecation
 warning; it does not affect test success, and dependency migration remains maintenance work.
+
+## Reliability v2 evidence
+
+See [the improvement report](../reports/stage-4-reliability.md) and
+[new raw results](../reports/stage4-reliability-v2/summary.json). The existing
+`/evaluation-summary` endpoint deliberately continues to expose the historical v1 summary; the UI
+labels that link historical. Do not present it as the current optional-contract benchmark.
+Use deterministic mode for demonstrations when memory is constrained. No automatic fallback
+after failed inference is performed; explicitly choose deterministic mode to continue.

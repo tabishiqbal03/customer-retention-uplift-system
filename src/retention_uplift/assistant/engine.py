@@ -5,8 +5,8 @@ from threading import Lock
 
 from pydantic import ValidationError
 
-from .claims import DEPLOYMENT, UNCERTAINTY, WARNING, prepare
-from .contracts import AssistantError, ClaimPlan, Explanation
+from .claims import DEPLOYMENT, UNCERTAINTY, WARNING, optional_catalogue, prepare
+from .contracts import AssistantError, ClaimPlan, Explanation, OptionalPlan
 
 
 class ExplanationEngine:
@@ -33,6 +33,18 @@ class ExplanationEngine:
                 "Model selected fabricated, duplicate or incomplete claims.",
                 502,
             )
+        return ids
+
+    @staticmethod
+    def validate_optional(raw, context):
+        try:
+            ids = OptionalPlan.model_validate_json(raw).optional_claim_ids
+        except (ValidationError, ValueError) as exc:
+            raise AssistantError(
+                "invalid_model_plan", "Invalid optional claim contract.", 502
+            ) from exc
+        if len(set(ids)) != len(ids) or set(ids) - set(optional_catalogue(context)):
+            raise AssistantError("invalid_model_plan", "Unknown or duplicate optional claims.", 502)
         return ids
 
     def explain(self, request):
@@ -66,6 +78,8 @@ class ExplanationEngine:
                 latency_seconds=time.perf_counter() - start,
             )
         attempts = 0
+        selected = []
+        contribution = "none"
         if request.mode == "deterministic":
             ids = list(context.required)
         else:
@@ -89,7 +103,13 @@ class ExplanationEngine:
                         request.question, context, request.strategy, retry=attempts == 2
                     )
                     try:
-                        ids = self.validate_plan(raw, context)
+                        if getattr(self.adapter, "plan_contract", "legacy") == "optional_v2":
+                            selected = self.validate_optional(raw, context)
+                            ids = list(context.required) + selected
+                            contribution = "optional_explanation" if selected else "empty_selection"
+                        else:
+                            ids = self.validate_plan(raw, context)
+                            contribution = "legacy_plan"
                         break
                     except AssistantError:
                         if attempts == 2:
@@ -112,6 +132,8 @@ class ExplanationEngine:
             requires_human_review=True,
             supported=True,
             execution_mode=request.mode,
+            model_selected_claim_ids=selected,
+            contribution=contribution,
             model=self.adapter.model if request.mode == "ollama" else None,
             attempts=attempts,
             latency_seconds=time.perf_counter() - start,
@@ -121,6 +143,29 @@ class ExplanationEngine:
 
     def validate_response(self, response, context):
         ids = self.validate_plan(ClaimPlan(claim_ids=response.claim_ids).model_dump_json(), context)
+        if response.contribution in ("optional_explanation", "empty_selection"):
+            selected = self.validate_optional(
+                OptionalPlan(
+                    optional_claim_ids=response.model_selected_claim_ids
+                ).model_dump_json(),
+                context,
+            )
+            if (
+                ids != list(context.required) + selected
+                or (response.contribution == "optional_explanation") != bool(selected)
+                or response.execution_mode != "ollama"
+            ):
+                raise AssistantError(
+                    "invalid_response", "Invalid model contribution metadata.", 502
+                )
+        elif response.model_selected_claim_ids:
+            raise AssistantError("invalid_response", "Unexpected model selection.", 502)
+        if response.contribution == "none" and response.execution_mode != "deterministic":
+            raise AssistantError("invalid_response", "Missing contribution classification.", 502)
+        if response.execution_mode == "deterministic" and (
+            response.contribution != "none" or response.model is not None or response.attempts != 0
+        ):
+            raise AssistantError("invalid_response", "Invalid deterministic attribution.", 502)
         expected = "\n\n".join([context.claims[id].text for id in ids] + [WARNING, UNCERTAINTY])
         paths = list(dict.fromkeys(p for id in ids for p in context.claims[id].references))
         if response.answer != expected or response.evidence_references != [

@@ -1,0 +1,17 @@
+{
+  "full": {
+    "tests": "311",
+    "failures": "0",
+    "errors": "0",
+    "skipped": "0",
+    "time": "359.323"
+  },
+  "final_assistant": {
+    "tests": "225",
+    "failures": "0",
+    "errors": "0",
+    "skipped": "0",
+    "time": "27.090"
+  },
+  "note": "Full suite collected before two final resource/metadata tests were added; final assistant suite includes them. All 187 pre-existing tests remain unchanged; final combined total 313."
+}

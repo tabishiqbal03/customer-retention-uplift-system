@@ -1,0 +1,13 @@
+{
+  "modes": [
+    "deterministic"
+  ],
+  "model": "qwen2.5:3b",
+  "options": {
+    "temperature": 0,
+    "seed": 20261020,
+    "num_ctx": 2048,
+    "num_predict": 64,
+    "num_thread": 2
+  }
+}

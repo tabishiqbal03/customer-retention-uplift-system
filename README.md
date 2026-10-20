@@ -18,7 +18,7 @@ flowchart LR
   E --> F[Saved evidence and pilot design]
   F --> G[Typed allowlisted retrieval]
   Q[Stakeholder question] --> G
-  G --> H[Local Ollama claim plan OR deterministic demonstration]
+  G --> H[Mandatory facts + optional Ollama explanation selection]
   H --> I[Validation and authoritative rendering]
   I --> J[FastAPI / local UI / human review]
 ```
@@ -32,18 +32,23 @@ flowchart LR
 - Base planning selects **1,500 customers**, spends **£3,000** and predicts **£5,187.17 net**.
   The randomized observed-outcome net estimate is **£3,800**, with a pointwise 95% interval of
   **[−£698.15, £8,308.20]**. The recommendation is **inconclusive: no rollout**.
-- The assistant cites exact report fields and preserves that recommendation. Ollama selects and
-  orders approved claim IDs; application code renders every number and mandatory caveat.
+- The assistant cites exact report fields and preserves that recommendation. Ollama selects up to two additional approved explanations; application code always includes
+  mandatory evidence and renders every number and caveat.
   It is deliberately constrained composition, not unrestricted AI analysis.
 
 See [Stage 4 execution results](reports/stage-4-completion.md) for actual local-model performance,
 failures, latency and test totals. [Machine-readable evaluation](reports/stage4/evaluation-summary.json)
 separates model calls from scope-guard refusals; deterministic answers are never counted as LLM successes.
 
-**Current LLM limitation:** the basic prompt passed 11/28 supported questions. The bound prompt
+**Historical LLM baseline:** the basic prompt passed 11/28 supported questions. The bound prompt
 passed 2/5 completed questions before the run was stopped under severe memory pressure; its full
 benchmark is incomplete. The deterministic suite passed all 44 cases. No prompt superiority or
 production reliability is claimed.
+
+**Reliability pass:** the new optional-only contract removes mandatory-ID copying. The new
+[report](reports/stage-4-reliability.md) distinguishes model contribution from safe mandatory-only
+responses. Live v2 evaluation is resource-blocked so far; no improvement in live success rate is
+claimed. Original raw results remain unchanged in `reports/stage4`.
 
 ## Run the local explanation demo — Windows CMD
 
@@ -70,7 +75,7 @@ see [setup, five demonstrations and troubleshooting](docs/assistant.md).
 python -m ruff check .
 python -m ruff format --check .
 python -m pytest -q --basetemp=data/test-full-tmp
-python -m retention_uplift.assistant.cli evaluate --output data/assistant-eval
+python -m retention_uplift.assistant.cli evaluate --output data/assistant-eval --modes deterministic
 ```
 
 The full tests need Java for real Spark integration. The assistant tests alone use mocked Ollama:

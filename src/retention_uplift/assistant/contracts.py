@@ -206,6 +206,10 @@ class ClaimPlan(Contract):
     claim_ids: list[str] = Field(min_length=1, max_length=16)
 
 
+class OptionalPlan(Contract):
+    optional_claim_ids: list[str] = Field(max_length=2)
+
+
 class Explanation(Contract):
     schema_version: Literal[1] = 1
     answer: str
@@ -223,6 +227,8 @@ class Explanation(Contract):
     model: str | None = None
     attempts: int = Field(ge=0, le=2)
     latency_seconds: float = Field(ge=0)
+    model_selected_claim_ids: list[str] = Field(default_factory=list)
+    contribution: Literal["none", "optional_explanation", "empty_selection", "legacy_plan"] = "none"
 
 
 class ErrorBody(Contract):

@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "status": "executed",
+  "utc": "2026-10-20T01:37:50.219698+00:00",
+  "python": "3.14.3",
+  "case_sha256": "287aaec6f98dd104316f3d639b5af0df189a9b44cd10e5e5ae021b90a1d97d44",
+  "report_sha256": "a20186b0c8974ef525dc76f8ba73792a8f049a802bf07b6f92300214503c033e",
+  "cases": 44,
+  "strategies": {
+    "deterministic": {
+      "case_passes": 44,
+      "case_total": 44,
+      "supported_successes": 28,
+      "supported_total": 28,
+      "scope_guard_correct_refusals": 16,
+      "scope_guard_total": 16,
+      "live_requests": 0,
+      "live_successes": 0,
+      "meaningful_model_contributions": 0,
+      "empty_selection_responses": 0,
+      "deterministic_fallbacks_after_error": 0,
+      "supported_errors": 0,
+      "timeout_errors": 0,
+      "live_first_attempt_successes": 0,
+      "model_calls": 0,
+      "requests_with_unknown_attempt_count": 0,
+      "retries": 0,
+      "completed_supported_responses": 28,
+      "validation_checks_passed": {
+        "schema_valid": 28,
+        "expected_evidence": 28,
+        "reference_values_valid": 28,
+        "rendered_claims_valid": 28,
+        "uncertainty_preserved": 28
+      },
+      "latency_seconds": {
+        "median": 0.0023465999984182417,
+        "p95_nearest_rank": 0.004683399980422109,
+        "max": 0.014538699993863702
+      },
+      "model": null,
+      "options": null,
+      "failures": [],
+      "planned_cases": 44,
+      "planned_supported_cases": 28,
+      "uncompleted_case_ids": [],
+      "status": "complete"
+    }
+  },
+  "interpretation": "Development suite, not a held-out generalization benchmark. Live successes exclude scope guards. Accuracy covers approved rendered claims only. Both prompts use the same JSON schema, retrieval and post-validation.",
+  "missing_outcome_policy": "Uncompleted cases are not successes or recorded failures; they may include an interrupted in-flight request."
+}

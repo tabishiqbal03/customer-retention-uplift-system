@@ -1,3 +1,5 @@
+> Historical Stage 4 implementation report. The subsequent [reliability improvement report](stage-4-reliability.md) supersedes the model-contract and current-runtime descriptions below. Historical benchmark evidence is preserved.
+
 # Stage 4 completion report
 
 Verification date: 20 October 2026 (Europe/London). All customer data are synthetic and all

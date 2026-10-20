@@ -35,6 +35,7 @@ class RecordingAdapter(OllamaAdapter):
             raise
         finally:
             record["seconds"] = time.perf_counter() - start
+            record["generation"] = dict(self.last_generation)
 
 
 def assess(case, response, engine, request):
@@ -138,11 +139,18 @@ def summarize_rows(rows, model=None, options=None):
     """Summarize recorded outcomes only; missing outcomes are never counted as successes."""
     supported = [r for r in rows if r["expected"]["supported"]]
     refused = [r for r in rows if not r["expected"]["supported"]]
-    live = [r for r in supported if r["model_calls"]]
+    live = [r for r in supported if r["model_calls"] or r.get("inference_attempted")]
     completed = [r for r in supported if "response" in r]
     latencies = sorted(r["wall_seconds"] for r in (live or supported))
     calls = [c for r in rows for c in r["model_calls"]]
-    valid_first = sum(r.get("passed", False) and len(r["model_calls"]) == 1 for r in live)
+
+    def contributes(row):
+        return (
+            row.get("passed", False)
+            and row.get("response", {}).get("contribution") != "empty_selection"
+        )
+
+    valid_first = sum(contributes(r) and len(r["model_calls"]) == 1 for r in live)
     metrics = {
         "case_passes": sum(r["passed"] for r in rows),
         "case_total": len(rows),
@@ -151,9 +159,22 @@ def summarize_rows(rows, model=None, options=None):
         "scope_guard_correct_refusals": sum(r["passed"] for r in refused),
         "scope_guard_total": len(refused),
         "live_requests": len(live),
-        "live_successes": sum(r["passed"] for r in live),
+        "live_successes": sum(contributes(r) for r in live),
+        "meaningful_model_contributions": sum(
+            r["passed"] and r.get("response", {}).get("contribution") == "optional_explanation"
+            for r in live
+        ),
+        "empty_selection_responses": sum(
+            r.get("response", {}).get("contribution") == "empty_selection" for r in live
+        ),
+        "deterministic_fallbacks_after_error": 0,
+        "supported_errors": sum("error" in r for r in supported),
+        "timeout_errors": sum(r.get("error", {}).get("code") == "model_timeout" for r in supported),
         "live_first_attempt_successes": valid_first,
         "model_calls": len(calls),
+        "requests_with_unknown_attempt_count": sum(
+            r.get("attempt_count_unknown", False) for r in live
+        ),
         "retries": sum(c["retry"] for c in calls),
         "completed_supported_responses": len(completed),
         "validation_checks_passed": {
